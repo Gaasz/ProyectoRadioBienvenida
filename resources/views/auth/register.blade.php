@@ -268,7 +268,7 @@
 </div>
 @endsection
 
-@section('js')
+{{-- @section('js')
 <script>
 
   $('.formulario-registro').submit(function(e){
@@ -298,4 +298,4 @@
 
   
 </script>
-@endsection
+@endsection --}}

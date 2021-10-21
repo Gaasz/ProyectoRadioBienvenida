@@ -34,7 +34,7 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'nombreEmpresa' => ['required', 'alpha', 'max:100'],
-            'direccion' => ['required', 'alpha', 'max:200'],
+            'direccion' => ['required', 'max:200'],
             'telefono' => ['required', 'numeric', 'min:9'],
             'password' => $this->passwordRules(),
         ])->validate();
