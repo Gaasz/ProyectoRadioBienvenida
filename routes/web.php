@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/home', function () {
-//    dd(\Illuminate\Support\Facades\Auth::user());
-// })->middleware('auth');
+Route::get('/home', function () {
+    return view('home');
+})->middleware(['auth', 'verified']);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
