@@ -2,34 +2,25 @@
   <div class="container-fluid">
     <nav class="float-left">
       <ul>
-        <li>
-          <a href="https://www.creative-tim.com">
-              {{ __('Creative Tim') }}
+          <li>
+          <a href="http://radiobienvenida.cl/">
+              
+              {{ __('Radio Bienvenida') }}
           </a>
-        </li>
-        <li>
-          <a href="https://creative-tim.com/presentation">
-              {{ __('About Us') }}
+          </li>
+          <li>
+          <a href="http://radiobienvenida.cl/contacto/">
+              {{ __('Contacto') }}
           </a>
-        </li>
-        <li>
-          <a href="http://blog.creative-tim.com">
-              {{ __('Blog') }}
-          </a>
-        </li>
-        <li>
-          <a href="https://www.creative-tim.com/license">
-              {{ __('Licenses') }}
-          </a>
-        </li>
+          </li>
+          
       </ul>
-    </nav>
+      </nav>
     <div class="copyright float-right">
-      &copy;
       <script>
         document.write(new Date().getFullYear())
-      </script>, made with <i class="material-icons">favorite</i> by
-      <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a> and <a href="https://www.updivision.com" target="_blank">UPDIVISION</a> for a better web.
+      </script>
+      <a href="http://radiobienvenida.cl" target="_blank">Radio Bienvenida</a>
     </div>
   </div>
 </footer>

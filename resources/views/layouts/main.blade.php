@@ -32,7 +32,8 @@
   <script src="{{ asset('js/core/jquery.min.js') }}"></script>
   <script src="{{ asset('js/core/popper.min.js') }}"></script>
   <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
-  {{-- <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script> --}}
+  <script src="{{ asset('js/plugins/perfect-scrollbar.jquery.min.js') }}"></script>
+  <script src="{{ asset('js/material-dashboard.js') }}" type="text/javascript"></script>
   @yield('js')
   @stack('js')
 </body>
