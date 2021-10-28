@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home', function () {
-    return view('home');
-})->middleware(['auth', 'verified']);
+Route::get('/home', [LoginController::class, 'index'])->middleware('auth', 'verified');
+
+
+// Route::get('/home', function () {
+//     return view('home');
+// })->middleware(['auth', 'verified']);
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

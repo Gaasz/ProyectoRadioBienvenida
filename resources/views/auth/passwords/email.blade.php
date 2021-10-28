@@ -72,10 +72,10 @@
                         </div>
                     @endif
             <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Dirección de Correo Electronico') }}</label>
+                {{-- <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('Dirección de Correo Electronico') }}</label> --}}
 
-                <div class="col-md-6">
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                <div class="col-md-6 mx-auto">
+                    <input id="email" type="email" class="form-control text-center @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Direccion de correo electrónico" required autocomplete="email" autofocus>
 
                     @error('email')
                         <span class="invalid-feedback" role="alert">

@@ -13,7 +13,7 @@
                     </i>              
                 </div>
               <p class="card-category">Total Cotizaciones</p>
-              <h3 class="card-title">100
+              <h3 class="card-title">{{$cotizaciones}}
               </h3>
             </div>
             <div class="card-footer">
@@ -43,7 +43,7 @@
           <div class="card card-stats">
             <div class="card-header card-header-danger card-header-icon">
               <div class="card-icon">
-                <i class="material-icons">info_outline</i>
+                <i class="material-icons">monetization_on</i>
               </div>
               <p class="card-category">Precio Actual del Anuncio</p>
               <h3 class="card-title"><small>$</small>4.000</h3>
