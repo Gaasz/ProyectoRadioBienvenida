@@ -14,6 +14,7 @@ use Laravel\Fortify\Fortify;
 use App\Models\User;
 use App\Models\Cotizacion;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\RegistroController;
 
 
 class FortifyServiceProvider extends ServiceProvider
@@ -53,7 +54,8 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::registerView(function () {
-            return view('auth.register');
+            $registro = (new RegistroController)->index();
+            return $registro;
         });
         
         Fortify::resetPasswordView(function ($request) {

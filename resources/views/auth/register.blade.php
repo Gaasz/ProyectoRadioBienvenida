@@ -17,6 +17,7 @@
               <!--Registro información Personal-->
                           <div class="text-center my-3">
                               <h3>Datos Personales</h3>
+                              <h4>{{$tipo_empresa}}</h4>
                           </div>
                           <div class="bmd-form-group{{ $errors->has('primerNombre') ? ' has-danger' : '' }}">
                             <div class="input-group">

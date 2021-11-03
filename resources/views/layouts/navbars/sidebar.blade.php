@@ -32,14 +32,24 @@
                 <span class="sidebar-normal">{{ __('Mi cuenta') }} </span>
               </a>
             </li>
-            <li class="nav-item{{ $activePage == 'user-management' ? ' active' : '' }}">
-              <a class="nav-link" href="#">
+            <li class="nav-item{{ $activePage == 'listadoUsuarios' ? ' active' : '' }}">
+              <a class="nav-link" href="{{route('usuarios.listado')}}">
                 <span class="sidebar-mini"> 
                   <span class="material-icons">
                     groups
                   </span>  
                 </span>
                 <span class="sidebar-normal"> {{ __('Listado de Usuarios') }} </span>
+              </a>
+            </li>
+            <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
+              <a class="nav-link" href="{{route('trabajador.registro')}}">
+                <span class="sidebar-mini"> 
+                  <span class="material-icons">
+                    person_add
+                  </span>  
+                </span>
+                <span class="sidebar-normal"> {{ __('Crear Trabajador Radial') }} </span>
               </a>
             </li>
           </ul>

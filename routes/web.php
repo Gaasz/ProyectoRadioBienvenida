@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,14 @@ Route::get('/', function () {
 
 Route::get('/home', [LoginController::class, 'index'])->middleware('auth', 'verified');
 
+Route::get('/registro', [RegistroController::class, 'index']);
+// Route::get('/register', [RegistroController::class, 'index']);
+
+Route::get('/usuarios/crear', [UserController::class, 'create'])->middleware('auth', 'verified')->name('trabajador.registro');
+
+Route::post('usuarios/crear', [UserController::class, 'store'])->middleware('auth', 'verified')->name('trabajador.guardar');
+
+Route::get('usuarios/listado', [UserController::class , 'index'])->middleware('auth', 'verified')->name('usuarios.listado');
 
 // Route::get('/home', function () {
 //     return view('home');

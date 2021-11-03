@@ -28,6 +28,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'nombre_empresa',
         'direccion',
         'rol_id',
+        'empresa_id'
     ];
 
     /**
@@ -49,8 +50,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    // public function empresa()
-    // {
-    //     return $this->belongsTo(Empresa::class,'empresa_id');
-    // }
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class,'empresa_id');
+    }
+
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class,'rol_id');
+    }
 }
