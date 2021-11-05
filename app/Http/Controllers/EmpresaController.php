@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Empresa;
+use App\Models\User;
 
 class EmpresaController extends Controller
 {
@@ -57,7 +58,9 @@ class EmpresaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $empresa = Empresa::findOrFail($usuario->empresa_id);
+        return view('empresas.edit', compact('usuario', 'empresa'));
     }
 
     /**

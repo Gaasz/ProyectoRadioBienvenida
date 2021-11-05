@@ -17,7 +17,9 @@ class User extends Authenticatable implements MustVerifyEmail
      *
      * @var string[]
      */
+    protected $primaryKey = 'id';
     protected $fillable = [
+        'id',
         'primer_nombre',
         'segundo_nombre',
         'apellido_paterno',
@@ -58,5 +60,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function rol()
     {
         return $this->belongsTo(Rol::class,'rol_id');
-    }
+    }   
 }

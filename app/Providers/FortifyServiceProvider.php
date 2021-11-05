@@ -71,10 +71,12 @@ class FortifyServiceProvider extends ServiceProvider
         });
 
         Fortify::authenticateUsing(function (Request $request) {
-            $user = User::where('email', $request->email)->first();
+            $user = User::where('email', $request->email)->with('rol')->with('empresa')->first();
     
             if ($user &&
                 Hash::check($request->password, $user->password)) {
+                    session(['rol' => $user->rol->id_rol]);
+                    session(['id_empresa' => $user->empresa->id_empresa]);
                     session(['id' => $user->id]);
                     session(['primerNombre' => $user->primer_nombre]);
                 return $user;

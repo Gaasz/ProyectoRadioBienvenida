@@ -1,4 +1,20 @@
-@extends('layouts.main', ['activePage' => 'dashboard', 'titlePage' => __('Panel de Inicio   ')])
+@php
+switch (session()->get('rol')) {
+    case '1':
+        $titlePage = 'Panel de Inicio de Administrador';
+        break;
+    case '2':
+        $titlePage = 'Panel de Inicio de Trabajador Radial';
+    break;
+    case '3':
+        $titlePage = 'Panel de Inicio de Cliente';
+        break;
+    default:
+        $titlePage = 'Panel de Inicio de Usuario';
+        break;}
+@endphp
+
+@extends('layouts.main', ['activePage' => 'dashboard', 'titlePage' => $titlePage])
 
 @section('content')
   <div class="content">

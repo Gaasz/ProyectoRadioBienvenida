@@ -14,57 +14,64 @@
                                 <p class="card-category">Ingresar Datos</p>
                             </div>
                             <div class="card-body">
-                                <input name="rol" type="hidden" value="2">
                                 <div class="row mt-3">
                                     <label for="primerNombre" class="col-sm-2 col-form-label">Primer Nombre</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="primerNombre" placeholder="Ingresa su Primer Nombre..." autofocus required>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="primerNombre" placeholder="Ingresa el Primer Nombre..." autofocus >
                                         <span style="color:red"><small>@error('primerNombre'){{$message}}@enderror</small></span>
+
+                                    </div>
+                                    <label for="segundoNombre" class="col-sm-2 col-form-label">Segundo Nombre</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="segundoNombre" placeholder="Ingresa el Segundo Nombre..." >
+                                        <span style="color: red"><small>@error('segundoNombre'){{$message}}@enderror</small></span>
+
+                                    </div>
+                                </div>
+                                
+                                
+                                <div class="row mt-3">
+                                    <label for="apellidoPaterno" class="col-sm-2 col-form-label">Apellido Paterno</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="apellidoPaterno" placeholder="Ingresa el Apellido Paterno..." >
+                                        <span style="color: red"><small>@error('apellidoPaterno'){{$message}}@enderror</small></span>
+
+                                    </div>
+                                    <label for="apellidoMaterno" class="col-sm-2 col-form-label">Apellido Materno</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" name="apellidoMaterno" placeholder="Ingresa el Apellido Materno..." >
+                                        <span style="color: red"><small>@error('apellidoMaterno'){{$message}}@enderror</small></span>
 
                                     </div>
                                 </div>
                                 <div class="row mt-3">
-                                    <label for="segundoNombre" class="col-sm-2 col-form-label">Segundo Nombre</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="segundoNombre" placeholder="Ingresa su Segundo Nombre..." required>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <label for="apellidoPaterno" class="col-sm-2 col-form-label">Apellido Paterno</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="apellidoPaterno" placeholder="Ingresa su Apellido Paterno..." required>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
-                                    <label for="apellidoMaterno" class="col-sm-2 col-form-label">Apellido Materno</label>
-                                    <div class="col-sm-7">
-                                        <input type="text" class="form-control" name="apellidoMaterno" placeholder="Ingresa su Apellido Materno..." required>
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
                                     <label for="correo" class="col-sm-2 col-form-label">Correo Electrónico</label>
-                                    <div class="col-sm-7">
-                                        <input type="email" class="form-control" name="correo" placeholder="Ingresa su Correo Electrónico..." required>
+                                    <div class="col-sm-4">
+                                        <input type="email" class="form-control" name="email" placeholder="Ingresa el Correo Electrónico..." >
+                                        <span style="color: red"><small>@error('email'){{$message}}@enderror</small></span>
+
                                     </div>
-                                </div>
-                                <div class="row mt-3">
                                     <label for="telefono" class="col-sm-2 col-form-label">Telefono</label>
-                                    <div class="col-sm-7">
-                                        <input type="number" class="form-control" name="telefono" placeholder="Ingresa su Numero de Telefono..." required>
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control" name="telefono" placeholder="Ingresa el Numero de Telefono..." >
+                                        <span style="color: red"><small>@error('telefono'){{$message}}@enderror</small></span>
+
                                     </div>
                                 </div>
+                                
                                 <div class="row mt-3">
                                     <label for="contraseña" class="col-sm-2 col-form-label">Contraseña</label>
-                                    <div class="col-sm-7">
-                                        <input type="password" class="form-control" name="contraseña" placeholder="Ingresa su Contraseña..." required>
+                                    <div class="col-sm-4">
+                                        <input type="password" class="form-control" name="contraseña" placeholder="Ingresa la Contraseña..." >
+                                        <span style="color: red"><small>@error('contraseña'){{$message}}@enderror</small></span>
+
                                     </div>
-                                </div>
-                                <div class="row mt-3">
                                     <label for="contraseña" class="col-sm-2 col-form-label">Confirme Contraseña</label>
-                                    <div class="col-sm-7">
-                                        <input type="password" class="form-control" name="contraseña" placeholder="Ingresa su Contraseña..." required>
+                                    <div class="col-sm-4">
+                                        <input type="password" class="form-control" name="contraseña_confirmation" placeholder="Confirme la Contraseña..." >
                                     </div>
                                 </div>
+                                
                             </div>
 
                             <div class="card-footer ml-auto mr-auto">

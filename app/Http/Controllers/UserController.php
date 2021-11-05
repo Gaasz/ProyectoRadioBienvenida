@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Models\Empresa;
 
 
 class UserController extends Controller
@@ -16,8 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {   
-        $usuarios = User::with('empresa')->get();
-    // return $usuarios;
+        $usuarios = User::with('empresa','rol')->get();
         return view('usuarios.index', compact('usuarios'));
     }
 
@@ -38,10 +38,23 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        
+    {   
+        $request->validate([
+            'primerNombre' => 'required|alpha',
+            'segundoNombre' => 'required|alpha',
+            'apellidoPaterno'=> 'required|alpha',
+            'apellidoMaterno'=> 'required|alpha',
+            'email' => 'required|email|unique:users',
+            'contraseña' => 'required|min:8|confirmed',
+            'telefono' => 'required|digits:9|unique:users'
 
+        ]);
+     
+
+        $empresa = Empresa::orderBy('created_at', 'desc')->first()->id_empresa; 
+        
         $trabajador = new User;
+        $trabajador->id = date('mdYhis', time());
         $trabajador->primer_nombre = $request->primerNombre;
         $trabajador->segundo_nombre = $request->segundoNombre;
         $trabajador->apellido_paterno = $request->apellidoPaterno;
@@ -50,11 +63,11 @@ class UserController extends Controller
         $trabajador->email = $request->correo;
         $trabajador->telefono = $request->telefono;
         $trabajador->rol_id = '2';
-        $trabajador->empresa_id = '1';
+        $trabajador->empresa_id = $empresa;
         $trabajador->email_verified_at = date('Y-m-d H:i:s');
         $trabajador->save();
         
-        return redirect()->route('usuarios.listado');
+        return redirect()->route('usuarios.listado')->with('success', 'Usuario creado correctamente');
     }
 
     /**
@@ -65,7 +78,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        return view('usuarios.show', compact('usuario'));        
     }
 
     /**
@@ -76,7 +90,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        return view('usuarios.edit', compact('usuario'));
     }
 
     /**
@@ -88,7 +103,50 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $id = $usuario->id;
+
+        $request->validate([
+            'primerNombre' => 'required|alpha',
+            'segundoNombre' => 'required|alpha',
+            'apellidoPaterno'=> 'required|alpha',
+            'apellidoMaterno'=> 'required|alpha',
+            'email' => 'required|email|unique:users,email,'.$id,
+            'telefono' => 'required|digits:9|unique:users,telefono,'. $id,
+
+        ]);
+
+        $id = $usuario->id;
+
+        if($request->primerNombre != $usuario->primer_nombre || $request->segundoNombre != $usuario->segundo_nombre || $request->apellidoPaterno != $usuario->apellido_paterno || $request->apellidoMaterno != $usuario->apellido_materno || $request->email != $usuario->email || $request->telefono != $usuario->telefono){
+            $usuario->primer_nombre = $request->primerNombre;
+            $usuario->segundo_nombre = $request->segundoNombre;
+            $usuario->apellido_paterno = $request->apellidoPaterno;
+            $usuario->apellido_materno = $request->apellidoMaterno;
+            $usuario->email = $request->email;
+            $usuario->telefono = $request->telefono;
+            $usuario->save();
+            return redirect()->route('usuarios.detalle',$id)->with('success', 'Usuario actualizado correctamente');
+        }else{
+            return redirect()->route('usuarios.detalle',$id)->with('success', 'No se han realizado cambios');
+        }
+        
+    }
+
+    public function updatePassword(Request $request, $id)
+    {
+        $usuario = User::findOrFail($id);
+        
+        $request->validate([
+            'contraseñaActual' => 'required|current_password',
+            'nuevaContraseña' => 'required|string|min:8|confirmed|different:contraseñaActual',
+        ]);
+
+        if(Hash::check($request->contraseña, $usuario->password)){
+            $usuario->password = Hash::make($request->nuevaContraseña);
+            $usuario->save();
+            return redirect()->route('usuarios.detalle',$id)->with('successContraseña', 'Contraseña actualizada correctamente');
+        }
     }
 
     /**

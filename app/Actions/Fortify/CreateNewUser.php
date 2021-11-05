@@ -42,11 +42,17 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => $this->passwordRules(),
             ])->validate();
     
-            
-            
+            $empresa = New Empresa();
+            $empresa->id_empresa = date('mdYhis', time());
+            $empresa->nombre_empresa = 'Radio Bienvenida';
+            $empresa->direccion = "C. Cuevas 289, Rancagua, O'Higgins";
+            $id_empresa = $empresa->id_empresa;
+            $empresa->save();
+
     
     
             return User::create([
+                'id' => date('mdYhis', time()),
                 'primer_nombre' => $input['primerNombre'],
                 'segundo_nombre' => $input['segundoNombre'],
                 'apellido_paterno' => $input['apellidoPaterno'],
@@ -56,11 +62,12 @@ class CreateNewUser implements CreatesNewUsers
                 'telefono' => $input['telefono'],
                 // 'nombre_empresa' => $input['nombreEmpresa'],
                 // 'direccion' => $input['direccion'],
-                'empresa_id' => 1,
+                'empresa_id' => $id_empresa,
                 'rol_id' => 1,
             ]);
             
         }else{
+            
 
             Validator::make($input, [
                 'primerNombre' => ['required', 'alpha', 'max:50'],
@@ -81,12 +88,14 @@ class CreateNewUser implements CreatesNewUsers
             ])->validate();
     
             $empresa = new Empresa();
+            $empresa->id_empresa = date('mdYhis', time());
             $empresa->nombre_empresa = $input['nombreEmpresa'];
             $empresa->direccion = $input['direccion'];
             $empresa->save();
             $id_empresa = $empresa->id_empresa;
 
             return User::create([
+                'id' => date('mdYhis', time()),
                 'primer_nombre' => $input['primerNombre'],
                 'segundo_nombre' => $input['segundoNombre'],
                 'apellido_paterno' => $input['apellidoPaterno'],

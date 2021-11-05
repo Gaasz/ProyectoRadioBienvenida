@@ -1,7 +1,7 @@
 @extends('layouts.main', ['activePage' =>'listadoUsuarios', 'titlePage' => 'Listado de Clientes'])
 
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css"> --}}
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap4.min.css">
 @endsection
@@ -22,16 +22,22 @@
                             </p>
                         </div>
                         <div class="card-body mt-1">
+                            @if(session('success'))
+                                <div class="alert alert-success" role="success">
+                                    {{ session('success') }}
+                                </div>
+                            @endif
                             <div class="table-responsive">
                                 <table id="tablaUsuarios" class="table">
                                     <thead class="text-primary">
-                                        <th class="d-block d-sm-none">
+                                        <th>
                                             Empresa
                                         </th>
-                                    
-                                       
                                         <th>
                                             Correo Electronico
+                                        </th>
+                                        <th>
+                                            Rol
                                         </th>
                                         <th>
                                             Teléfono
@@ -50,26 +56,16 @@
                                      <tbody>
                                         @foreach($usuarios as $usuario)
                                         <tr>
-                                            <td>
-                                                <div class="row-sm d-block d-sm-none">
-                                                    <button class="btn btn-success">
-                                                        <i class="material-icons">
-                                                            add_circle
-                                                        </i>
-                                                    </button>
-                                                 {{$usuario->empresa->nombre_empresa}}
-                                                </div>
-                                            </td>
-                                            
-                                            
+                                            <td>{{$usuario->empresa->nombre_empresa}}</td>
                                             <td>{{$usuario->email}}</td>
+                                            <td>{{$usuario->rol->nombre}}</td>
                                             <td>{{$usuario->telefono}}</td>
                                             <td> 
-                                                <button class="btn btn-info">
+                                                <a href="{{route('usuarios.detalle', $usuario->id)}}" class="btn btn-info">
                                                     <span class="material-icons ">
                                                         person_search
                                                         </span> 
-                                                </button>
+                                                </a>
                                             </td>
                                             <td>
                                                 <button class="btn btn-warning">
