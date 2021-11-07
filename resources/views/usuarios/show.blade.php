@@ -91,6 +91,11 @@ $titlePage = 'Detalles del Usuario';}
             <p class="card-category">Información de Empresa</p>
           </div>
           <div class="card-body ">
+            @if(session('successEmpresa'))
+            <div class="alert alert-success" role="success">
+                {{ session('successEmpresa') }}
+            </div>
+            @endif
             <div class="row">
               <label class="col-sm-2 col-form-label">Nombre Empresa</label>
               <div class="col-sm-4">
@@ -109,7 +114,7 @@ $titlePage = 'Detalles del Usuario';}
             </div> 
           </div>
           <div class="card-footer ml-auto mr-auto">
-            <a href="{{route('empresa.editar', $usuario->id)}}" class="btn btn-primary">Modificar</a>
+            <a href="{{route('empresas.editar', $usuario->id)}}" class="btn btn-primary">Modificar</a>
           </div>
         </div>
 

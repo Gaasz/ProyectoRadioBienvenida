@@ -72,9 +72,26 @@ class EmpresaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $request->validate([
+            'nombreEmpresa' => 'required',
+            'direccion' => 'required',]);
+        $usuario = User::findOrFail($id);
+        $empresa = Empresa::findOrFail($usuario->empresa_id);
 
+        if($request->nombreEmpresa!= $empresa->nombre_empresa || $request->direccion != $empresa->direccion){
+            
+            $empresa->nombre_empresa = $request->nombreEmpresa;
+            $empresa->direccion = $request->direccion;
+            $empresa->save();
+            return redirect()->route('usuarios.detalle', $id)->with('successEmpresa', 'Empresa actualizada correctamente');
+        }else{
+            return redirect()->route('usuarios.detalle', $id)->with('successEmpresa', 'No se han realizado cambios');
+        }
+
+      
+        
+            
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -83,6 +100,6 @@ class EmpresaController extends Controller
      */
     public function destroy($id)
     {
-        //
+       //
     }
 }

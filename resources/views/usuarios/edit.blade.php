@@ -89,6 +89,11 @@ $titlePage = 'Detalles del Usuario';}
           </div>
         </form>
         </div>
+        <div class="text-left" >
+          <a href="{{ route('empresas.editar', $usuario->id) }}" class="text-light">
+              <small style="color:orange">{{ __('¿Quieres cambiar información de la Empresa? ¡Click Aquí!') }}</small>
+          </a>
+        </div> 
         &nbsp;
         
          <div class="card">
@@ -137,7 +142,7 @@ $titlePage = 'Detalles del Usuario';}
           </div>
         </form>
         </div>
-
+        
 
           
     </div>

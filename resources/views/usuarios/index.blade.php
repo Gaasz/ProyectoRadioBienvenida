@@ -42,13 +42,13 @@
                                         <th>
                                             Teléfono
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Ver
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Editar
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Eliminar
                                         </th>
                                     </thead>
@@ -60,26 +60,30 @@
                                             <td>{{$usuario->email}}</td>
                                             <td>{{$usuario->rol->nombre}}</td>
                                             <td>{{$usuario->telefono}}</td>
-                                            <td> 
+                                            <td class="td-actions text-center"> 
                                                 <a href="{{route('usuarios.detalle', $usuario->id)}}" class="btn btn-info">
                                                     <span class="material-icons ">
                                                         person_search
                                                         </span> 
                                                 </a>
                                             </td>
-                                            <td>
+                                            <td class="td-actions text-center">
                                                 <button class="btn btn-warning">
                                                     <span class="material-icons ">
                                                         edit
                                                         </span> 
                                                 </button>
                                             </td>
-                                            <td>
-                                                <button class="btn btn-danger">
+                                            <td class="td-actions text-center">
+                                               <form action="{{route('usuarios.eliminar', $usuario)}}" method="POST" enctype="multipart/form-data">
+                                                @csrf
+                                                {{ method_field('DELETE') }}
+                                                <button type='submit' class="btn btn-danger">
                                                     <span class="material-icons ">
                                                         delete
-                                                        </span> 
+                                                    </span> 
                                                 </button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

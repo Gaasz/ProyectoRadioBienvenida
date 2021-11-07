@@ -21,28 +21,41 @@ $titlePage = 'Detalles del Usuario';}
             <p class="card-category">Información de Empresa</p>
           </div>
           <div class="card-body ">
-            <div class="row">
-              <label class="col-sm-2 col-form-label">Nombre Empresa</label>
-              <div class="col-sm-4">
-                <div class="form-group bmd-form-group is-filled">
-                  {{$empresa->nombre_empresa}}
+            <form action="{{route('empresas.actualizar',$usuario->id)}}" method="POST">
+              @csrf
+              {{method_field('PUT')}}
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Nombre Empresa</label>
+                <div class="col-sm-4">
+                  <div class="form-group bmd-form-group is-filled">
+                    <input name="nombreEmpresa" type="text" class="form-control" value="{{$empresa->nombre_empresa}}" required autofocus>
+                    <span style="color:red"><small>@error('nombreEmpresa'){{$message}}@enderror</small></span>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="row">
-              <label class="col-sm-2 col-form-label">Direccion</label>
-              <div class="col-sm-4">
-                <div class="form-group bmd-form-group is-filled">
-                  {{$empresa->direccion}}
+              <div class="row">
+                <label class="col-sm-2 col-form-label">Direccion</label>
+                <div class="col-sm-4">
+                  <div class="form-group bmd-form-group is-filled">
+                    <input name="direccion" type="text" class="form-control" value="{{$empresa->direccion}}" required>
+                    <span style="color:red"><small>@error('direccion'){{$message}}@enderror</small></span>
+
+                  </div>
                 </div>
-              </div>
-            </div> 
+              </div> 
+           
           </div>
           <div class="card-footer ml-auto mr-auto">
-            <a href="{{route('empresa.editar', $usuario->id)}}" class="btn btn-primary">Modificar</a>
+            <button type="submit" class="btn btn-primary">Modificar</button>
           </div>
+         </form>
+         
         </div>
-
+        <div class="text-left" >
+          <a href="{{ route('usuarios.editar', $usuario->id) }}" class="text-light">
+              <small style="color:orange">{{ __('¿Quieres cambiar información del usuario o cambiar contraseña? ¡Click Aquí!') }}</small>
+          </a>
+        </div> 
     </div>
 </div>
 @endsection

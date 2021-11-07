@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Programa;
 use Illuminate\Http\Request;
-use App\Models\Cotizacion;
-use App\Models\User;
 
-
-
-class LoginController extends Controller
+class ProgramaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +14,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        $cotizaciones = Cotizacion::count();
-        $usuarios = User::latest()->with('empresa')->take(6)->get();
-        // return $usuarios;
-        return view('home', compact('cotizaciones', 'usuarios'));
+        //
     }
 
     /**
@@ -47,10 +41,10 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Programa $programa)
     {
         //
     }
@@ -58,10 +52,10 @@ class LoginController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Programa $programa)
     {
         //
     }
@@ -70,10 +64,10 @@ class LoginController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Programa $programa)
     {
         //
     }
@@ -81,10 +75,10 @@ class LoginController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Programa $programa)
     {
         //
     }

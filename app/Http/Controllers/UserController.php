@@ -47,7 +47,6 @@ class UserController extends Controller
             'email' => 'required|email|unique:users',
             'contraseña' => 'required|min:8|confirmed',
             'telefono' => 'required|digits:9|unique:users'
-
         ]);
      
 
@@ -116,8 +115,6 @@ class UserController extends Controller
 
         ]);
 
-        $id = $usuario->id;
-
         if($request->primerNombre != $usuario->primer_nombre || $request->segundoNombre != $usuario->segundo_nombre || $request->apellidoPaterno != $usuario->apellido_paterno || $request->apellidoMaterno != $usuario->apellido_materno || $request->email != $usuario->email || $request->telefono != $usuario->telefono){
             $usuario->primer_nombre = $request->primerNombre;
             $usuario->segundo_nombre = $request->segundoNombre;
@@ -157,6 +154,10 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+        $empresa = Empresa::findOrFail($usuario->empresa_id);
+        $usuario->delete();
+        $empresa->delete();
+        return redirect()->route('usuarios.listado')->with('success', 'Usuario eliminado correctamente');
     }
 }

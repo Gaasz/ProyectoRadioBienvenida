@@ -140,7 +140,7 @@ switch (session()->get('rol')) {
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-6 col-md-12">
+        {{-- <div class="col-lg-6 col-md-12">
           <div class="card">
             <div class="card-header card-header-tabs card-header-primary">
               <div class="nav-tabs-navigation">
@@ -384,7 +384,7 @@ switch (session()->get('rol')) {
               </div>
             </div>
           </div>
-        </div>
+        </div> --}}
         <div class="col-lg-6 col-md-12">
           <div class="card">
             <div class="card-header card-header-warning">
@@ -423,6 +423,43 @@ switch (session()->get('rol')) {
                     <td>Philip Chaney</td>
                     <td>$38,735</td>
                     <td>Korea, South</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <div class="card">
+            <div class="card-header card-header-warning">
+              <h4 class="card-title">Usuarios Nuevos</h4>
+              {{-- <p class="card-category">Nuevos Usuarios</p> --}}
+            </div>
+            <div class="card-body table-responsive">
+              <table class="table table-hover">
+                <thead class="text-warning">
+                  <th>Empresa</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Telefono</th>
+                  <th>Detalle</th>
+                </thead>
+                <tbody>
+                  @foreach ($usuarios as $usuario)
+                    <tr>
+                      <td>{{$usuario->empresa->nombre_empresa}}</td>
+                      <td>{{$usuario->primer_nombre}} {{$usuario->apellido_paterno}} {{$usuario->apellido_materno}}</td>
+                      <td>{{$usuario->email}}</td>
+                      <td>{{$usuario->telefono}}</td>
+                      <td class="td-actions">
+                        <a href="{{route('usuarios.detalle', $usuario->id)}}" class="btn btn-warning">
+                          <span class="material-icons ">
+                            person_search
+                              </span> 
+                        </a>
+                      </td>
+                    </tr>
+                  @endforeach
                   </tr>
                 </tbody>
               </table>

@@ -37,9 +37,10 @@ Route::get('usuarios/{id}', [UserController::class , 'show'])->middleware('auth'
 Route::get('usuarios/{id}/editar', [UserController::class , 'edit'])->middleware('auth', 'verified')->name('usuarios.editar');
 Route::put('usuarios/{id}', [UserController::class , 'update'])->middleware('auth', 'verified')->name('usuarios.actualizar');
 Route::put('usuarios/{id}/cambiarcontraseña', [UserController::class , 'updatePassword'])->middleware('auth', 'verified')->name('usuarios.actualizarcontraseña');
-Route::put('usuarios/{id}/empresa/editar', [EmpresaController::class , 'update'])->middleware('auth', 'verified')->name('empresa.actualizar');
+Route::put('usuarios/{id}/empresa/editar', [EmpresaController::class , 'update'])->middleware('auth', 'verified')->name('empresas.actualizar');
 
-Route::get('usuarios/{id}/empresa', [EmpresaController::class , 'edit'])->middleware('auth', 'verified')->name('empresa.editar');
+Route::get('usuarios/{id}/empresa', [EmpresaController::class , 'edit'])->middleware('auth', 'verified')->name('empresas.editar');
+Route::delete('usuarios/{id}/eliminar', [UserController::class , 'destroy'])->middleware('auth', 'verified')->name('usuarios.eliminar');
 
 // Route::get('/home', function () {
 //     return view('home');

@@ -36,8 +36,8 @@ class CreateNewUser implements CreatesNewUsers
                     'max:255',
                     Rule::unique(User::class),
                 ],
-                // 'nombreEmpresa' => ['required', 'alpha', 'max:100'],
-                // 'direccion' => ['required', 'max:200'],
+                'nombreEmpresa' => ['required', 'alpha', 'max:100'],
+                'direccion' => ['required', 'max:200'],
                 'telefono' => ['required', 'numeric', 'min:9'],
                 'password' => $this->passwordRules(),
             ])->validate();
@@ -60,8 +60,8 @@ class CreateNewUser implements CreatesNewUsers
                 'password' => Hash::make($input['password']),
                 'email' => $input['email'],
                 'telefono' => $input['telefono'],
-                // 'nombre_empresa' => $input['nombreEmpresa'],
-                // 'direccion' => $input['direccion'],
+                'nombre_empresa' => $input['nombreEmpresa'],
+                'direccion' => $input['direccion'],
                 'empresa_id' => $id_empresa,
                 'rol_id' => 1,
             ]);
@@ -91,8 +91,8 @@ class CreateNewUser implements CreatesNewUsers
             $empresa->id_empresa = date('mdYhis', time());
             $empresa->nombre_empresa = $input['nombreEmpresa'];
             $empresa->direccion = $input['direccion'];
-            $empresa->save();
             $id_empresa = $empresa->id_empresa;
+            $empresa->save();
 
             return User::create([
                 'id' => date('mdYhis', time()),
