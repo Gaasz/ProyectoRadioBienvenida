@@ -81,8 +81,8 @@
               <p>{{ __('Tarifario Electoral') }}</p>
           </a>
         </li>
-        <li class="nav-item{{ $activePage == 'notifications' ? ' active' : '' }}">
-          <a class="nav-link" href="#">
+        <li class="nav-item{{ $activePage == 'programas' ? ' active' : '' }}">
+          <a class="nav-link" href="{{route('programas.listado')}}">
             <i class="material-icons">notifications</i>
             <p>{{ __('Programas') }}</p>
           </a>

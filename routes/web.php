@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\ProgramaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,10 @@ Route::put('usuarios/{id}/empresa/editar', [EmpresaController::class , 'update']
 
 Route::get('usuarios/{id}/empresa', [EmpresaController::class , 'edit'])->middleware('auth', 'verified')->name('empresas.editar');
 Route::delete('usuarios/{id}/eliminar', [UserController::class , 'destroy'])->middleware('auth', 'verified')->name('usuarios.eliminar');
+
+Route::get('programas/listado', [ProgramaController::class , 'index'])->middleware('auth', 'verified')->name('programas.listado');
+Route::get('programas/crear', [ProgramaController::class , 'create'])->middleware('auth', 'verified')->name('programas.registro');
+Route::post('programas/crear', [ProgramaController::class , 'store'])->middleware('auth', 'verified')->name('programas.guardar');
 
 // Route::get('/home', function () {
 //     return view('home');

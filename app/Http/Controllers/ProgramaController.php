@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Programa;
+use App\Models\Dia;
 use Illuminate\Http\Request;
+use Storage;
 
 class ProgramaController extends Controller
 {
@@ -13,8 +15,9 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {   
+        $programas = Programa::all();
+        return view('programas.index', compact('programas'));
     }
 
     /**
@@ -23,8 +26,10 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {       
+        $dias = Dia::all();
+        return view('programas.create', compact('dias'));
+        // return view('programas.create');
     }
 
     /**
@@ -34,8 +39,23 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+        $programa = new Programa();
+        $id = date('mdYhis', time());
+        $programa->id = $id;
+        $programa->nombre_programa = $request->nombreDelPrograma;
+        $programa->descripcion_programa = $request->descripcion;
+        $programa->imagen_programa = $request->imagen->store('programas', 'public');
+        $programa->save();
+        $programa = Programa::findOrFail($id);
+
+        foreach ($request->dias as $dia) {
+            
+            $programa->dias()->attach($dia);
+        }
+
+
+        return 'wena compita';
     }
 
     /**
