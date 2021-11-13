@@ -8830,7 +8830,8 @@ a.text-dark:focus {
 .show>.btn.btn-primary.dropdown-toggle:focus,
 .show>.btn.btn-primary.dropdown-toggle.focus {
   color: #fff;
-  background-color: #9124a3;
+  /* //este es el color a cambiar */
+  background-color: #a39d24;
   border-color: #3f1048;
 }
 

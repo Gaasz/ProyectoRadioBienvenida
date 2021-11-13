@@ -26,9 +26,20 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {       
-        $dias = Dia::all();
-        return view('programas.create', compact('dias'));
+    {   
+
+        // return view('programas.test');
+        //dias
+        // $lunes = Dia::where('id', '1')->first();
+        // $martes = Dia::where('id', '2')->first();
+        // $miercoles = Dia::where('id', '3')->first();
+        // $jueves = Dia::where('id', '4')->first();
+        // $viernes = Dia::where('id', '5')->first();
+        // $sabado = Dia::where('id', '6')->first();
+        // $domingo = Dia::where('id', '7')->first();
+         $dias = Dia::all();
+        
+        return view('programas.create2', compact('dias'));
         // return view('programas.create');
     }
 
@@ -40,6 +51,7 @@ class ProgramaController extends Controller
      */
     public function store(Request $request)
     {   
+        return $request->all();
         $programa = new Programa();
         $id = date('mdYhis', time());
         $programa->id = $id;
