@@ -8,6 +8,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\OfertaController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,15 +49,6 @@ Route::get('programas/listado', [ProgramaController::class , 'index'])->middlewa
 Route::get('programas/crear', [ProgramaController::class , 'create'])->middleware('auth', 'verified')->name('programas.registro');
 Route::post('programas/crear', [ProgramaController::class , 'store'])->middleware('auth', 'verified')->name('programas.guardar');
 Route::delete('programas/{id}/eliminar', [ProgramaController::class , 'destroy'])->middleware('auth', 'verified')->name('programas.eliminar');
-Route::get('programas/{id}/editar', [ProgramaController::class , 'edit'])->middleware('auth', 'verified')->name('programas.editar');
-Route::put('programas/{id}', [ProgramaController::class , 'update'])->middleware('auth', 'verified')->name('programas.actualizar');
-
-Route::get('oferta/listado', [OfertaController::class , 'index'])->middleware('auth', 'verified')->name('ofertas.listado');
-Route::get('oferta/crear', [OfertaController::class , 'create'])->middleware('auth', 'verified')->name('ofertas.registro');
-Route::post('oferta/crear', [OfertaController::class , 'store'])->middleware('auth', 'verified')->name('ofertas.guardar');
-Route::delete('oferta/{id}/eliminar', [OfertaController::class , 'destroy'])->middleware('auth', 'verified')->name('ofertas.eliminar');
-Route::get('oferta/{id}/editar', [OfertaController::class , 'edit'])->middleware('auth', 'verified')->name('ofertas.editar');
-Route::put('oferta/{id}', [OfertaController::class , 'update'])->middleware('auth', 'verified')->name('ofertas.actualizar');
 
 // Route::get('/home', function () {
 //     return view('home');
