@@ -62,7 +62,7 @@ switch (session()->get('rol')) {
                 <i class="material-icons">monetization_on</i>
               </div>
               <p class="card-category">Precio Actual del Anuncio</p>
-              <h3 class="card-title"><small>$</small>4.000</h3>
+              <h3 class="card-title"><small>$</small>{{$oferta}}</h3>
             </div>
             <div class="card-footer">
               <div class="stats">

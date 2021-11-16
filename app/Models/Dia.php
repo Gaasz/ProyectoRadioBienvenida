@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Programa;
+use App\Models\Hora;
 
 class Dia extends Model
 {
@@ -17,5 +18,11 @@ class Dia extends Model
     public function programas()
     {
         return $this->belongsToMany(Programa::class);
+    }
+
+    //relacion dia-horario
+    public function horas()
+    {
+        return $this->belongsToMany(Hora::class);
     }
 }

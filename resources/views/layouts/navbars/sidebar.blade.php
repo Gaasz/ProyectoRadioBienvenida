@@ -69,8 +69,8 @@
               <p>{{ __('Auspicios ') }}</p>
           </a>
         </li>
-        <li class="nav-item{{ $activePage == 'icons' ? ' active' : '' }}">
-          <a class="nav-link" href="#">
+        <li class="nav-item{{ $activePage == 'ofertas' ? ' active' : '' }}">
+          <a class="nav-link" href="{{route('ofertas.listado')}}">
             <i class="material-icons">bubble_chart</i>
             <p>{{ __('Ofertas') }}</p>
           </a>
