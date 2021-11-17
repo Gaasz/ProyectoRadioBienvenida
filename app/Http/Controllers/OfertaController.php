@@ -37,9 +37,8 @@ class OfertaController extends Controller
      */
     public function store(Request $request)
     {
-        $oferta = new Oferta;
-        $oferta->fecha_inicio = $request->fechaInicio;
-        return $oferta;
+       
+        
        if($request->tipoOferta==1){
            
             $validacion = Validator::make($request->all(), [
@@ -49,34 +48,36 @@ class OfertaController extends Controller
                 'cantidad' => 'required',
                 'fechaInicio' => 'required',
                 'fechaFin' => 'required',
-            ]);
-            if ($validacion->fails()) {
-                return redirect()->back()->withErrors($validacion)->withInput()->with('oferta','ok');
-            }
+                ]);
+                if ($validacion->fails()) {
+                    return redirect()->back()->withErrors($validacion)->withInput()->with('oferta','ok');
+                }
             
-                return $request->all();
+                
             }
             if($request->tipoOferta==2){
               
 
-            $validacion = Validator::make($request->all(), [
-                'nombreOferta' => 'required',
-                'descripcion' => 'required',
-                'descuento' => 'required',
-                'fechaInicio' => 'required',
-                'fechaFin' => 'required',
-            ]);
-            if ($validacion->fails()) {
-                return redirect()->back()->withErrors($validacion)->withInput()->with('descuento','ok');
+                $validacion = Validator::make($request->all(), [
+                    'nombreOferta' => 'required',
+                    'descripcion' => 'required',
+                    'descuento' => 'required',
+                    'fechaInicio' => 'required',
+                    'fechaFin' => 'required',
+                ]);
+
+                if ($validacion->fails()) {
+                    return redirect()->back()->withErrors($validacion)->withInput()->with('descuento','ok');
+                }
             }
-        }else{
-            $request->validate([
-                 'nombreOferta' => 'required',
-                 'descripcion' => 'required',
-                 'tipoOferta'=> 'required',
-                 'descripcion' => 'required',
-             ]);
-        }
+            // }else{
+            //     $request->validate([
+            //         'nombreOferta' => 'required',
+            //         'descripcion' => 'required',
+            //         'tipoOferta'=> 'required',
+            //         'descripcion' => 'required',
+            //     ]);
+            // }
         
 
     }

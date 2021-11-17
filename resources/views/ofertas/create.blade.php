@@ -62,9 +62,12 @@
                                     <div class="col-sm-4">
                                         <input type="number" class="form-control" name="valor" id="valor" value="{{old('valor')}}">
                                     </div>
+                                    <span style="color:red"><small>@error('valor'){{$message}}@enderror</small></span>
+
                                     <label for="cantidad" class="col-sm-2 col-form-label">Cantidad de Frases</label>
                                     <div class="col-sm-4">
                                         <input type="number" class="form-control" name="cantidad" id="cantidad" value="{{old('cantidad')}}">
+                                        <span style="color:red"><small>@error('cantidad'){{$message}}@enderror</small></span>
                                     </div>
                                     
                                 </div>
