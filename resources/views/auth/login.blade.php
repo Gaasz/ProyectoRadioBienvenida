@@ -15,6 +15,13 @@
             <h4 class="card-title"><strong>{{ __('Ingresar') }}</strong></h4>
           </div>
           <div class="card-body">
+
+            {{-- mostrar mensaje de error de session error --}}
+            @if(session('error'))
+                  <div class="alert alert-success" role="success">
+                      {{ session('error') }}
+                  </div>
+            @endif
             <br>
             <br>
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">

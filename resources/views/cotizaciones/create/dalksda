@@ -960,3 +960,71 @@
 </script>
 @endsection
 @endsection
+
+
+
+
+
+
+
+
+
+
+for(contador; contador<cantidad.length; contador++){
+            for(j; j<cantidad.length; j++){
+                
+                if(((cantidad[contador].value) == (cantidad[j].value)) && (contador != j)){
+                    $(cantidad[j]).css('border-color', 'red');
+                    $(cantidad[j]).css('border-width', '1px');
+                    $(cantidad[j]).css('border-radius', '5px');
+                    $(cantidad[j]).css('background-color', '#ffcdd2');
+                    $(cantidad[j]).css('color', '#721c24');
+                    $(cantidad[j]).css('padding', '0.5em');
+                    $(cantidad[j]).css('margin-top', '0.5em');
+                    $(cantidad[j]).css('margin-bottom', '0.5em');
+                    $(cantidad[j]).css('border-color', 'red');
+                    $(cantidad[j]).css('border-style', 'solid');
+                    $(cantidad[j]).parent().append('');
+                    $(cantidad[contador]).css('border-color', 'red');
+                    $(cantidad[contador]).css('border-width', '1px');
+                    $(cantidad[contador]).css('border-radius', '5px');
+                    $(cantidad[contador]).css('background-color', '#ffcdd2');
+                    $(cantidad[contador]).css('color', '#721c24');
+                    $(cantidad[contador]).css('padding', '0.5em');
+                    $(cantidad[contador]).css('margin-top', '0.5em');
+                    $(cantidad[contador]).css('margin-bottom', '0.5em');
+                    $(cantidad[contador]).css('border-color', 'red');
+                    $(cantidad[contador]).css('border-style', 'solid');
+                    $('#horariorepetido'+contador).show('slow');
+                    $('#horariorepetido'+j).show('slow');
+
+            }
+            if(cantidad[contador].value != cantidad[j].value){
+                $(cantidad[j]).css('border-color', '');
+                $(cantidad[j]).css('border-width', '');
+                $(cantidad[j]).css('border-radius', '');
+                $(cantidad[j]).css('background-color', '');
+                $(cantidad[j]).css('color', '');
+                $(cantidad[j]).css('padding', '');
+                $(cantidad[j]).css('margin-top', '');
+                $(cantidad[j]).css('margin-bottom', '');
+                $(cantidad[j]).css('border-color', '');
+                $(cantidad[j]).css('border-style', '');
+                $(cantidad[j]).parent().append('');
+                $(cantidad[contador]).css('border-color', '');
+                $(cantidad[contador]).css('border-width', '');
+                $(cantidad[contador]).css('border-radius', '');
+                $(cantidad[contador]).css('background-color', '');
+                $(cantidad[contador]).css('color', '');
+                $(cantidad[contador]).css('padding', '');
+                $(cantidad[contador]).css('margin-top', '');
+                $(cantidad[contador]).css('margin-bottom', '');
+                $(cantidad[contador]).css('border-color', '');
+                $(cantidad[contador]).css('border-style', '');
+                $('#horariorepetido'+contador).hide('slow');
+                $('#horariorepetido'+j).hide('slow');
+                    
+                    
+                   
+            }
+        }

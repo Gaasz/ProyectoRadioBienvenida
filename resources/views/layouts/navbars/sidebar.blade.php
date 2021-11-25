@@ -13,6 +13,21 @@
     </div>
     <div class="sidebar-wrapper">
       <ul class="nav">
+
+        @if(session()->get('rol')==3)
+        <li class="nav-item{{ $activePage == 'profile' ? ' active' : '' }}">
+          <a class="nav-link" href="{{route('usuarios.detalle',session()->get('id'))}}">
+              <i class="material-icons">person</i> 
+            <p class="sidebar-normal">{{ __('Mi cuenta') }} </p>
+          </a>
+        </li>
+        @endif
+
+
+       
+
+
+        @if(session()->get('rol')==1 || session()->get('rol')==2)
         <li class="nav-item {{ ($activePage == 'profile' || $activePage == 'listadoUsuarios' || $activePage == 'usuarios') ? ' active' : '' }}">
           <a class="nav-link" data-toggle="collapse" href="#laravelExample" aria-expanded="false">
             <i><span class="material-icons">
@@ -44,6 +59,7 @@
                   <span class="sidebar-normal"> {{ __('Listado de Usuarios') }} </span>
                 </a>
               </li>
+              @if(session()->get('rol')==1)
               <li class="nav-item{{ $activePage == 'usuarios' ? ' active' : '' }}">
                 <a class="nav-link" href="{{route('trabajador.registro')}}">
                   <span class="sidebar-mini"> 
@@ -54,11 +70,17 @@
                   <span class="sidebar-normal"> {{ __('Crear Trabajador Radial') }} </span>
                 </a>
               </li>
+              @endif
             </ul>
           </div>
         </li>
+        @endif
+
+
+
+
         <li class="nav-item{{ $activePage == 'cotizaciones' ? ' active' : '' }}">
-          <a class="nav-link" href="#">
+          <a class="nav-link" href="{{route('cotizaciones.listado')}}">
             <i class="material-icons">content_paste</i>
               <p>{{ __('Cotizaciones') }}</p>
           </a>

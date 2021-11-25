@@ -28,38 +28,40 @@
                                 </div>
                             @endif
                             <div class="table-responsive">
-                                <table id="tablaUsuarios" class="table">
+                                <table id="tablaUsuarios" class="table table-striped">
                                     <thead class="text-primary">
-                                        <th>
+                                        <th class="text-center">
                                             Empresa
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Correo Electronico
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Rol
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Teléfono
                                         </th>
-                                        <th class="text-center">
+                                        <th class="text-center" class="text-center">
                                             Ver
                                         </th>
-                                        <th class="text-center">
+                                        @if(session()->get('rol')==1)
+                                        <th class="text-center" class="text-center">
                                             Editar
                                         </th>
-                                        <th class="text-center">
+                                        <th class="text-center" class="text-center">
                                             Eliminar
                                         </th>
+                                        @endif
                                     </thead>
 
                                      <tbody>
                                         @foreach($usuarios as $usuario)
                                         <tr>
-                                            <td>{{$usuario->empresa->nombre_empresa}}</td>
-                                            <td>{{$usuario->email}}</td>
-                                            <td>{{$usuario->rol->nombre}}</td>
-                                            <td>{{$usuario->telefono}}</td>
+                                            <td class="text-center">{{$usuario->empresa->nombre_empresa}}</td>
+                                            <td class="text-center">{{$usuario->email}}</td>
+                                            <td class="text-center">{{$usuario->rol->nombre}}</td>
+                                            <td class="text-center">{{$usuario->telefono}}</td>
                                             <td class="td-actions text-center"> 
                                                 <a href="{{route('usuarios.detalle', $usuario->id)}}" class="btn btn-info">
                                                     <span class="material-icons ">
@@ -67,24 +69,26 @@
                                                         </span> 
                                                 </a>
                                             </td>
-                                            <td class="td-actions text-center">
-                                                <button class="btn btn-warning">
-                                                    <span class="material-icons ">
-                                                        edit
-                                                        </span> 
-                                                </button>
-                                            </td>
-                                            <td class="td-actions text-center">
-                                               <form action="{{route('usuarios.eliminar', $usuario)}}" method="POST" enctype="multipart/form-data">
-                                                @csrf
-                                                {{ method_field('DELETE') }}
-                                                <button type='submit' class="btn btn-danger">
-                                                    <span class="material-icons ">
-                                                        delete
+                                          @if(session()->get('rol')==1)
+                                          <td class="td-actions text-center">
+                                            <button class="btn btn-warning">
+                                                <span class="material-icons ">
+                                                    edit
                                                     </span> 
-                                                </button>
-                                                </form>
-                                            </td>
+                                            </button>
+                                        </td>
+                                        <td class="td-actions text-center">
+                                           <form action="{{route('usuarios.eliminar', $usuario)}}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            {{ method_field('DELETE') }}
+                                            <button type='submit' class="btn btn-danger">
+                                                <span class="material-icons ">
+                                                    delete
+                                                </span> 
+                                            </button>
+                                            </form>
+                                        </td>
+                                        @endif
                                         </tr>
                                         @endforeach
                                      </tbody>

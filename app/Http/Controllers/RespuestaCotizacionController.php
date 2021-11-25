@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Respuesta_Cotizacion;
 use Illuminate\Http\Request;
-use App\Models\Cotizacion;
-use App\Models\User;
-use App\Models\Oferta;
 
-
-
-class LoginController extends Controller
+class RespuestaCotizacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,20 +14,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        if(session()->get('rol')==3){
-            $cotizaciones = Cotizacion::where('empresa_id', session()->get('id_empresa'))->count();
-            $tablaCotizaciones = Cotizacion::where('empresa_id', session()->get('id_empresa'))->get();
-        }else{
-            $cotizaciones = Cotizacion::count();
-            $tablaCotizaciones = Cotizacion::take(5)->get();
-        }
-        $usuarios = User::latest()->with('empresa')->take(5)->get();
-        $oferta = Oferta::first();
-        
-        $oferta = number_format($oferta->valor, 0, ',', '.');
-        
-        // return $usuarios;
-        return view('home', compact('cotizaciones', 'usuarios','oferta', 'tablaCotizaciones'));
+        //
     }
 
     /**
@@ -58,10 +41,10 @@ class LoginController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Respuesta_Cotizacion  $respuesta_Cotizacion
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Respuesta_Cotizacion $respuesta_Cotizacion)
     {
         //
     }
@@ -69,10 +52,10 @@ class LoginController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Respuesta_Cotizacion  $respuesta_Cotizacion
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Respuesta_Cotizacion $respuesta_Cotizacion)
     {
         //
     }
@@ -81,10 +64,10 @@ class LoginController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Respuesta_Cotizacion  $respuesta_Cotizacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Respuesta_Cotizacion $respuesta_Cotizacion)
     {
         //
     }
@@ -92,16 +75,11 @@ class LoginController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Respuesta_Cotizacion  $respuesta_Cotizacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Respuesta_Cotizacion $respuesta_Cotizacion)
     {
         //
-    }
-
-    public function actions()
-    {
-        return view('auth.login');
     }
 }

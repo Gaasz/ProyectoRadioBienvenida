@@ -28,4 +28,10 @@ class Empresa extends Model
         return $this->hasMany(User::class);
     }
 
+    public function cotizaciones()
+    {
+        return $this->hasMany(Cotizacion::class);
+    }
+    
+
 }

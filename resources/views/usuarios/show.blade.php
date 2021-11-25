@@ -77,10 +77,12 @@ $titlePage = 'Detalles del Usuario';}
               </div>
             </div>
           </div>
+          @if($usuario->id == session()->get('id') || session()->get('rol') == 1)
 
           <div class="card-footer ml-auto mr-auto">
             <a href={{route('usuarios.editar', $usuario->id)}} class="btn btn-primary">Modificar</a>
           </div>
+         @endif
         </div>
         &nbsp;
         <div class="card mt-2">
@@ -113,9 +115,11 @@ $titlePage = 'Detalles del Usuario';}
               </div>
             </div> 
           </div>
+          @if($usuario->id == session()->get('id') || session()->get('rol')==1)
           <div class="card-footer ml-auto mr-auto">
             <a href="{{route('empresas.editar', $usuario->id)}}" class="btn btn-primary">Modificar</a>
           </div>
+          @endif
         </div>
 
     </div>
