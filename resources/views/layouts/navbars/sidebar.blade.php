@@ -70,6 +70,7 @@
                   <span class="sidebar-normal"> {{ __('Crear Trabajador Radial') }} </span>
                 </a>
               </li>
+<<<<<<< HEAD
               <li class="nav-item{{ $activePage == 'rubros' ? ' active' : '' }}">
                 <a class="nav-link" href="#">
                   <span class="sidebar-mini"> 
@@ -80,18 +81,24 @@
                   <span class="sidebar-normal"> {{ __('Agregar Rubros de Empresa') }} </span>
                 </a>
               </li>
+=======
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
               @endif
             </ul>
           </div>
         </li>
         @endif
 
+<<<<<<< HEAD
         <li class="nav-item{{ $activePage == 'anuncios' ? ' active' : '' }}">
           <a class="nav-link" href="{{route('anuncios.listado')}}">
             <i class="material-icons">content_paste</i>
               <p>{{ __('Anuncios') }}</p>
           </a>
         </li>
+=======
+
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 
 
         <li class="nav-item{{ $activePage == 'cotizaciones' ? ' active' : '' }}">

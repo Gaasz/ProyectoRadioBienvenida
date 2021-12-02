@@ -252,7 +252,11 @@
                                             <div class="row col-form-label">
                                                 <label class="col-sm-3 col-form-label">Cantidad de Frases Diarias: </label>
                                                 <div class="form-group bmd-form-group is-filled">
+<<<<<<< HEAD
                                                     <input id="cantidad" name="cantidad" type="number" class="form-control text-center" value="{{@old('cantidad',$cotizacion->cantidad)}}">
+=======
+                                                    <input id="cantidad" name="cantidad" type="number" class="form-control text-center" value="{{$cotizacion->cantidad}}">
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                                 </div>                                            
                                             </div>
                                             <span style="color:red"><small>@error('cantidad'){{$message}}@enderror</small></span>
@@ -260,7 +264,11 @@
                                             <div class="row col-form-label">
                                                 <label class="col-sm-3 col-form-label">Valor Unitario actual del Anuncio: </label>
                                                 <div class="form-group bmd-form-group is-filled">
+<<<<<<< HEAD
                                                     <input id="valor" name="valor" type="number" class="form-control text-center" value="{{old('valor',$cotizacion->valor)}}">
+=======
+                                                    <input id="valor" name="valor" type="number" class="form-control text-center" value="{{$cotizacion->valor}}">
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                                 </div>                                            
                                             </div>
                                             <span style="color:red"><small>@error('valor'){{$message}}@enderror</small></span>
@@ -268,7 +276,11 @@
                                             <div class="row col-form-label">
                                                 <label class="col-sm-3 col-form-label">Bonificación: </label>
                                                 <div class="form-group bmd-form-group is-filled">
+<<<<<<< HEAD
                                                     <input id="extra" name="extra" type="number" class="form-control text-center" value="{{old('extra')}}">
+=======
+                                                    <input id="extra" name="extra" type="number" class="form-control text-center">
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                                 </div>                                            
                                             </div>
                                             <span id="alertaExtra" style="color:red; display:none"><small>La Cantidad de Frases Diarias sumadas a la Cantidad de Frases Extras no pueden ser mayor a 48</small></span>
@@ -289,7 +301,11 @@
                                                 <div class="row col-form-label">
                                                     <label class="col-sm-12 col-md-5 col-form-label">Fecha Inicio </label>
                                                     <div class="form-group bmd-form-group is-filled">
+<<<<<<< HEAD
                                                         <input id="calendarioInicio" name="fecha_inicio" class="form-control" value="{{@old('fecha_inicio',$cotizacion->fecha_inicio)}}">
+=======
+                                                        <input id="calendarioInicio" name="fecha_inicio" class="form-control" value="{{$cotizacion->fecha_inicio}}">
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                                     </div>                                            
                                                 </div>
                                                 <span style="color:red"><small>@error('fecha_inicio'){{$message}}@enderror</small></span>
@@ -298,7 +314,11 @@
                                                 <div class="row col-form-label">
                                                     <label class="col-sm-12 col-md-5 col-form-label">Fecha Fin </label>
                                                     <div class="form-group bmd-form-group is-filled">
+<<<<<<< HEAD
                                                         <input id="calendarioFin" name="fecha_fin" class="form-control" value="{{@old('fecha_fin',$cotizacion->fecha_fin)}}">
+=======
+                                                        <input id="calendarioFin" name="fecha_fin" class="form-control" value="{{$cotizacion->fecha_fin}}">
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                                     </div>                                            
                                                 </div>
                                                 <span style="color:red"><small>@error('fecha_fin'){{$message}}@enderror</small></span>
@@ -387,6 +407,7 @@
         if($('#cantidad').val()<1){
             $('#cantidad').val(1);
         }
+<<<<<<< HEAD
         });
         $('#valor').change(function(){
         if($('#valor').val()>5001){
@@ -407,6 +428,10 @@
                 }
             });
         });
+=======
+    });
+        })
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
     </script>
  
     <script>
@@ -447,7 +472,11 @@ $(document).ready(function(){
             }
             
             //si calendarioInicio y calendarioFin son distintos de null y distintos de vacio entonces se calcula la distancia entre ellos
+<<<<<<< HEAD
             if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null && $('#valor').val()!=null && $('#valor').val()!=''){
+=======
+            if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null){
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                 distancia = Math.abs(new Date($('#calendarioInicio').val()).getTime() - new Date($('#calendarioFin').val()).getTime());
                 distancia = Math.ceil(distancia / (1000 * 3600 * 24));
                 total = $('#cantidad').val()*distancia*$('#valor').val();
@@ -478,7 +507,11 @@ $(document).ready(function(){
             }
 
             //si calendarioInicio y calendarioFin son distintos de null y distintos de vacio entonces se calcula la distancia entre ellos
+<<<<<<< HEAD
             if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null && $('#valor').val()!=null && $('#valor').val()!=''){
+=======
+            if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null){
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                 distancia = Math.abs(new Date($('#calendarioInicio').val()).getTime() - new Date($('#calendarioFin').val()).getTime());
                 distancia = Math.ceil(distancia / (1000 * 3600 * 24));
                 total = $('#cantidad').val()*distancia*$('#valor').val();
@@ -507,6 +540,7 @@ $(document).ready(function(){
             if($('#cantidad').val()>48){
                $('#cantidad').val(48);
             }
+<<<<<<< HEAD
             if($('#cantidad').val()<0){
                 $('#cantidad').val(1);
             }
@@ -515,6 +549,14 @@ $(document).ready(function(){
 
             //si calendarioInicio y calendarioFin son distintos de null y distintos de vacio entonces se calcula la distancia entre ellos
             if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null && $('#valor').val()!=null && $('#valor').val()!=''){
+=======
+            if($('#cantidad').val()<1){
+                $('#cantidad').val(1);
+            }
+
+            //si calendarioInicio y calendarioFin son distintos de null y distintos de vacio entonces se calcula la distancia entre ellos
+            if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null){
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                 distancia = Math.abs(new Date($('#calendarioInicio').val()).getTime() - new Date($('#calendarioFin').val()).getTime());
                 distancia = Math.ceil(distancia / (1000 * 3600 * 24));
                 total = $('#cantidad').val()*distancia*$('#valor').val();
@@ -527,6 +569,7 @@ $(document).ready(function(){
 
         });
 
+<<<<<<< HEAD
         $('#valor').change(function(){
             
 
@@ -545,6 +588,11 @@ $(document).ready(function(){
        
         $(document).ready(function (){
              if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null && $('#valor').val()!='' && $('#valor').val()!=null){
+=======
+       
+        $(document).ready(function (){
+             if($('#calendarioInicio').val()!='' && $('#calendarioFin').val()!='' && $('#calendarioInicio').val()!=null && $('#calendarioFin').val()!=null && $('#cantidad').val()!='' && $('#cantidad').val()!=null){
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                 distancia = Math.abs(new Date($('#calendarioInicio').val()).getTime() - new Date($('#calendarioFin').val()).getTime());
                 distancia = Math.ceil(distancia / (1000 * 3600 * 24));
                 total = $('#cantidad').val()*distancia*$('#valor').val();

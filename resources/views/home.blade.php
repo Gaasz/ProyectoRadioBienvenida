@@ -35,11 +35,15 @@ switch (session()->get('rol')) {
             <div class="card-footer">
               @if (session()->get('rol') !=3)
               <div class="stats">
+<<<<<<< HEAD
                 <a href="{{route('cotizaciones.listado')}}">Revisar Detalle</a>
               </div>
               @else
               <div class="stats">
                 <a href="{{route('cotizaciones.listado')}}">Revisar mis Cotizaciones</a>
+=======
+                <a href="{{route('cotizaciones.listado')}}">Revisar detalle</a>
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
               </div>
               @endif
             </div>

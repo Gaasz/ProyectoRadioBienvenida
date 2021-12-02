@@ -9,11 +9,15 @@ use App\Models\Empresa;
 use App\Models\Cotizacion;
 use App\Models\RespuestaCotizacion;
 use App\Models\User;
+<<<<<<< HEAD
 use App\Models\Anuncio;
+=======
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CreateCotizacion;
 use App\Mail\CotizacionEtapa1Respuesta;
 use App\Mail\CotizacionEtapa2Respuesta;
+<<<<<<< HEAD
 use App\Mail\CotizacionEtapa3Respuesta;
 use App\Mail\CotizacionEtapa4Respuesta;
 use App\Mail\CotizacionEtapa5Respuesta;
@@ -24,6 +28,9 @@ use App\Mail\CotizacionEtapa9Respuesta;
 use Illuminate\Support\Facades\File;
 //carbon
 use Carbon\Carbon;
+=======
+use Illuminate\Support\Facades\File;
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 
 
 class CotizacionController extends Controller
@@ -76,7 +83,10 @@ class CotizacionController extends Controller
         $estatus = $cotizacion->estatus_id;
 
         switch ($estatus) {
+<<<<<<< HEAD
             //respuesta de solicitud de cotizacion
+=======
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
             case '1':
 
                     //esta vista no es accesible para rol cliente, se redirecciona a la vista de home
@@ -133,21 +143,32 @@ class CotizacionController extends Controller
                         }
                     }
                 break;
+<<<<<<< HEAD
                 //
+=======
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
             case '2':
                 
                 //esta vista es solo accesible para rol cliente, de lo contrario se redirecciona al home
                 if(session()->get('rol')!=3){
                     return redirect()->route('home');
+<<<<<<< HEAD
                 }
                 if(session()->get('rol')==3 && $cotizacion->empresa_id == session()->get('id_empresa')){
                 $cotizacion = Cotizacion::findOrFail($id);
+=======
+                }else{
+                    $cotizacion = Cotizacion::findOrFail($id);
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                
                 //buscar cotizacionRespuesta que tenga cotizacion_id como $cotizacion->id_cotizacion
                 $respuesta = RespuestaCotizacion::where('cotizacion_id', $cotizacion->id_cotizacion)->first();
                 return view('cotizaciones.create.etapa3', compact('cotizacion', 'respuesta'));
+<<<<<<< HEAD
                 }else{
                     return redirect()->route('home');
+=======
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                 }
                 break;
 
@@ -178,12 +199,17 @@ class CotizacionController extends Controller
                     }
 
                     
+<<<<<<< HEAD
                     return view('cotizaciones.create.etapa4', compact('cotizacion', 'empresa', 'respuesta' ,'horarios','contador'));
+=======
+                    return view('cotizaciones.create.etapa4', compact('cotizacion', 'empresa', 'respuesta'));
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                     
                 }
                 break;
 
             case '4':
+<<<<<<< HEAD
 
                 if(session()->get('rol')!=3){
                     return redirect()->route('home');
@@ -237,6 +263,15 @@ class CotizacionController extends Controller
                         $audio = $anuncio->archivo_audio;   
                         return view('cotizaciones.create.etapa7', compact('cotizacion','audio','anuncio', 'respuesta'));
                     }
+=======
+                return view('cotizaciones.create.etapa5', compact('cotizacion'));
+                break;
+            case '5':
+                return view('cotizaciones.create.etapa6', compact('cotizacion'));
+                break;
+            case '6':
+                return view('cotizaciones.create.etapa7', compact('cotizacion'));
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                 break;
             case '7':
                 return view('cotizaciones.create.etapa8', compact('cotizacion'));
@@ -521,6 +556,10 @@ class CotizacionController extends Controller
                 
                     
                 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                  $request->validate([
                      'seleccioneOpción' => 'required'
                     
@@ -531,6 +570,7 @@ class CotizacionController extends Controller
 
               
                 if($request->seleccioneOpción == '1'){
+<<<<<<< HEAD
                    
                   
                             $validacion = Validator::make($request->all(), [
@@ -540,12 +580,23 @@ class CotizacionController extends Controller
                         [
                             'hora.*.distinct' => 'El horario seleccionado ya existe',
                             'hora.*.required' => 'El campo horario no puede estar vacio',
+=======
+                  
+                            $validacion = Validator::make($request->all(), [
+                            'hora' => 'required',
+                            'hora.*' => 'string|distinct',    
+                        ],
+                        [
+                            'hora.*.distinct' => 'El horario seleccionado ya existe',
+                            'hora.*.string' => 'El horario seleccionado no es un horario valido',
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                         ]);
 
                         if ($validacion->fails()) {
 
                             return redirect()->back()->withErrors($validacion)->withInput()->with('aceptar','ok');
                         }
+<<<<<<< HEAD
                         
 
                         $respuesta = RespuestaCotizacion::where('cotizacion_id', $cotizacion->id_cotizacion)->first();
@@ -586,6 +637,14 @@ class CotizacionController extends Controller
 
                         
 
+=======
+
+                        $respuesta = RespuestaCotizacion::where('cotizacion_id', $cotizacion->id_cotizacion)->first();
+                        $respuesta->horarios = $request->hora;
+                        $cotizacion->estatus_id = 4;
+                        $respuesta->save();
+
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                         return redirect()->route('cotizaciones.listado')->with('success','Se ha Aceptado Correctamente la Orden de Compra');
 
                 }else{
@@ -597,17 +656,23 @@ class CotizacionController extends Controller
                     }
                     $cotizacion->archivo = null;
                     $cotizacion->estatus_id = 2;
+<<<<<<< HEAD
 
                     
 
                     $cotizacion->save();
                     return redirect()->route('cotizaciones.listado')->with('error','Se ha Rechazado la Orden de Compra');
+=======
+                    $cotizacion->save();
+                    return redirect()->route('cotizaciones.listado')->with('error','Se ha Rechazado Correctamente la Orden de Compra');
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 
                 }
                 
                
                 break;
             case '4':
+<<<<<<< HEAD
 
 
                 $anuncio = Anuncio::where('cotizacion_id',$request->id)->first();
@@ -696,6 +761,15 @@ class CotizacionController extends Controller
                 break;
             case '6':
                 return $request->all();
+=======
+              
+                break;
+            case '5':
+              
+                break;
+            case '6':
+               
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                 break;
             case '7':
                

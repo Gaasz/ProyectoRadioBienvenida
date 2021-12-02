@@ -52,9 +52,22 @@
                                                
                                     <label for="valor" class="col-form-label">Valor Unitario Frase</label>
                                     
+<<<<<<< HEAD
                                     <input type="number" class="form-control text-center" name="valor" id="valor" value="{{old('valor')}}">
                                     <span style="color:red"><small>@error('valor'){{$message}}@enderror</small></span>
 
+=======
+                                    <label for="valor" class="col-sm-2 col-form-label">Valor Unitario Frase</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control" name="valor" id="valor" value="{{old('valor')}}">
+                                    </div>
+                                    <span style="color:red"><small>@error('valor'){{$message}}@enderror</small></span>
+
+                                    <label for="cantidad" class="col-sm-2 col-form-label">Cantidad de Frases</label>
+                                    <div class="col-sm-4">
+                                        <input type="number" class="form-control" name="cantidad" id="cantidad" value="{{old('cantidad')}}">
+                                        <span style="color:red"><small>@error('cantidad'){{$message}}@enderror</small></span>
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                     </div>
                                    
                                     

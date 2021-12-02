@@ -9,11 +9,14 @@ use App\Http\Controllers\ProgramaController;
 use App\Http\Controllers\OfertaController;
 use App\Http\Controllers\CotizacionController;
 use App\Http\Controllers\PdfController;
+<<<<<<< HEAD
 use App\Http\Controllers\AnuncioController;
 use App\Http\Controllers\ArchivoController;
 use App\Http\Controllers\DOMPDFContoller;
 use App\Http\Controllers\RubroEmpresaController;
 use App\Models\Oferta;
+=======
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 use App\Models\User;
 use App\Models\Cotizacion;
 use App\Models\Empresa;
@@ -95,6 +98,7 @@ Route::get('cotizaciones/responder/{id}', [CotizacionController::class , 'create
 Route::post('cotizaciones/responder/{id}', [CotizacionController::class , 'store2'])->middleware('auth')->name('cotizaciones.guardar2');
 Route::get('cotizaciones/listado', [CotizacionController::class , 'index'])->middleware('auth')->name('cotizaciones.listado');
 
+<<<<<<< HEAD
 
 Route::get('anuncios/listado', [AnuncioController::class , 'index'])->middleware('auth')->name('anuncios.listado');
 
@@ -109,6 +113,11 @@ Route::get('rubros/listado', [RubroEmpresaController::class , 'index'])->middlew
 Route::get('rubros/crear', [RubroEmpresaController::class , 'create'])->middleware('auth', 'admin')->name('rubros.registro');
 Route::post('rubros/crear', [RubroEmpresaController::class , 'store'])->middleware('auth','admin')->name('rubros.guardar');
 Route::delete('rubros/eliminar', [RubroEmpresaController::class , 'destroy'])->middleware('auth','admin')->name('rubros.eliminar');
+=======
+
+Route::get('pdf/{id}', [PdfController::class , 'showPdf'])->middleware('auth', 'adminworker')->name('pdf.mostrar');
+
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 
     
     

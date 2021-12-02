@@ -35,9 +35,12 @@ class Empresa extends Model
     {
         return $this->hasMany(Cotizacion::class);
     }
+<<<<<<< HEAD
 
 
   
+=======
+>>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
     
 
 }
