@@ -71,7 +71,6 @@
                                 </div>
                                 <div class="row mt-3">
                                 
-<<<<<<< HEAD
                                     <div class="mx-auto">
                                         <label for="valor" class=" col-form-label">Precio Total de la Cotización</label>
                                     
@@ -90,26 +89,6 @@
                                     
                                     </div>
                                 </div>  
-=======
-                                <div class="mx-auto">
-                                    <label for="valor" class=" col-form-label">Precio Total de la Cotización</label>
-                                
-                                    @php
-                                        //separar por unidades de mil con punto
-                                        $precio = $respuesta->precio;
-                                        $precio = number_format($precio, 0, ',', '.');
-                                    @endphp
-                                    
-                                    <div class="mx-auto">
-                                        <input value="${{$precio}}" name="precio" id="precio" disabled class="form-control col-md-6 mx-auto text-center" style="border-radius: 25px;
-                                        background: rgb(240, 236, 236);
-                                        width: fit-content;font-weight: bold;">
-                                    </div>
-                                    
-                                
-                                </div>
-                            </div>  
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                 <div class="row mt-3">
                                     <div class="mx-auto">
                                         <label for="">¿Acepta la Cotización?</label>
@@ -124,11 +103,7 @@
                                     </div>
                                 </div>
                                 
-<<<<<<< HEAD
-                                {{-- <div class="row">
-=======
                                 <div class="row">
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                     <div class="mx-auto" id="archivoOculto" style="display: none">
                                             <input name="archivo" class="form-control" type="file" id="formFile">
 
@@ -138,7 +113,6 @@
                                                 </div>
                                             </div>
                                     </div>
-<<<<<<< HEAD
                                 </div> --}}
 
                                 <div class="row" id="archivoOculto" style="display: none">
@@ -150,8 +124,6 @@
                                         </button>
                                         <input class="form-control col-sm-3 mx-auto text-center" readonly id="valorArchivo" style="background-color:white">
                                     </div>
-=======
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                 </div>
                                
                                 <div class="row">
@@ -202,7 +174,6 @@
 
 
 <script>
-<<<<<<< HEAD
 
     $(document).ready(function(){
         $('#archivo').on('change', function(){
@@ -215,8 +186,6 @@
             $('#valorArchivo').val(filename);
         });
     });
-=======
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
     //cuando se seleccione el radio id aceptar append el input de archivo
     $('#aceptar').click(function(){
         $('#archivoOculto').show('slow');
