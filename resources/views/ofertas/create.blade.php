@@ -10,7 +10,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12">
-                <form action="{{ route('ofertas.guardar') }}" method="post" class="form-horizontal">
+                <form action="{{ route('ofertas.guardar') }}" method="post" class="form-horizontal" autocomplete="off">
                     @csrf
                         <div class="card col-sm-12 col-md-10 mx-auto">
                             <div class="card-header card-header-primary">
@@ -18,6 +18,17 @@
                                 <p class="card-category">Ingresar Datos</p>
                             </div>
                             <div class="card-body">
+                                @if(session('success'))
+                                    <div class="alert alert-success" role="success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if(session('error'))
+                                    <div class="alert alert-danger" role="error">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
+                                <input value={{$normal->valor}} hidden id="valorEstandar">
                                 <div class="row mt-3">
                                     <label for="nombreOferta" class="col-sm-2 col-form-label">Nombre de la Oferta</label>
                                     <div class="col-sm-4">
@@ -25,87 +36,47 @@
                                         <span style="color:red"><small>@error('nombreOferta'){{$message}}@enderror</small></span>
 
                                     </div>
-                                    <label for="tipoOferta" class="col-sm-2 col-form-label">Tipo de Oferta</label>
-                                    <div class="col-sm-4">
-
-                                        <div class="row ml-2">
-                                            <input type="radio" class="form-check" value="1" @if(old('tipoOferta')=='1') checked @endif name="tipoOferta" id="oferta" >
-                                            &nbsp;
-                                            <label for="tipoOferta">Oferta</label>
-                                        </div>
-                                        
-                                        <div class="row ml-2">
-                                            <input type="radio" class="form-check" @if(old('tipoOferta')=='2') checked @endif value="2" name="tipoOferta" id="descuento">
-                                            &nbsp;
-                                            <label for="tipoOferta">Descuento</label>
-                                        </div>
-                                        <span style="color:red"><small>@error('tipoOferta'){{$message}}@enderror</small></span>
-
-
-                                    </div>
-                                </div>
-                                <div class="row mt-3">
                                     <label for="descripcion" class="col-sm-2 col-form-label">Descripcion</label>
                                     <div class="col-sm-4">
                                         <textarea class="form-control" name="descripcion" rows="3" placeholder="Ingresa la descripcion de la Oferta...">{{old('descripcion')}}</textarea>
                                         <span style="color:red"><small>@error('descripcion'){{$message}}@enderror</small></span>
                                     </div>
+                                   
                                 </div>
+                                
 
-                                <div class="row mt-3" 
-                                @if(session('oferta')==false)
-                                style="display:none"
-                                @endif
-                                id="tipoOfertaOculta">
-                                    
-                                    <label for="valor" class="col-sm-2 col-form-label">Valor Unitario Frase</label>
-                                    <div class="col-sm-4">
-                                        <input type="number" class="form-control" name="valor" id="valor" value="{{old('valor')}}">
-                                    </div>
-                                    <label for="cantidad" class="col-sm-2 col-form-label">Cantidad de Frases</label>
-                                    <div class="col-sm-4">
-                                        <input type="number" class="form-control" name="cantidad" id="cantidad" value="{{old('cantidad')}}">
-                                    </div>
-                                    
-                                </div>
-
-                                <div class="row mt-3" 
-                                @if(session('descuento')==false)
-                                style="display:none"
-                                @endif
-                                id="tipoDescuentoOculto">
-                                    
+                                <div class="row mt-3">
+                                   
+                                   
                                     <div class="mx-auto">
-                                        <label for="valor" class="col-form-label">Porcentaje de Decuento</label>
-                                        <div class="col-md-8">
-                                            <input type="number" class="form-control col-md-10" name="descuento" id="descuentoInput" value="{{old('descuento')}}">
-                                        </div>
+                                               
+                                    <label for="valor" class="col-form-label">Valor Unitario Frase</label>
+                                    
+                                    <input type="number" class="form-control text-center" name="valor" id="valor" value="{{old('valor')}}">
+                                    <span style="color:red"><small>@error('valor'){{$message}}@enderror</small></span>
+
                                     </div>
-                                        
+                                   
+                                    
+
+                                   
+                                    
                                 </div>
+
+                               
+                                
+                                <div class="row mt-3" id="calendarios">
                                 
                                 
-                                <div class="row mt-3" id="calendarios" 
-                                @switch(session()->all())
-                                    @case(session('oferta')==true)
-                                        
-                                        @break
-                                    @case(session('descuento')==true)
-                                            
-                                        @break
-                                    @default
-                                        style="display:none"
-                                        @break 
-                                @endswitch>
                                     <label for="fechaInicio" class="col-sm-2 col-form-label">Fecha Inicio</label>
                                     <div class="col-sm-4">
-                                        <input class="form-control datepicker" id="calendarioInicio" name="fechaInicio" value="{{old('fechaInicio')}}">
+                                        <input   class="form-control datepicker" id="calendarioInicio" name="fechaInicio" value="{{old('fechaInicio')}}">
                                         <span style="color: red"><small>@error('fechaInicio'){{$message}}@enderror</small></span>
 
                                     </div>
                                     <label for="fechaFin" class="col-sm-2 col-form-label">Fecha Fin</label>
                                     <div class="col-sm-4">
-                                        <input class="form-control datepicker" id="calendarioFin" name="fechaFin" value="{{old('fechaFin')}}">
+                                        <input   class="form-control datepicker" id="calendarioFin" name="fechaFin" value="{{old('fechaFin')}}">
                                         <span style="color: red"><small>@error('fechaFin'){{$message}}@enderror</small></span>
                                     </div>
                                 </div>
@@ -129,34 +100,13 @@
 
 
 @section('js')
-<script>
-    $(document).ready(function(){
-        $('#oferta').click(function(){
-            $('#calendarios').hide();
-            $('#descuento').prop('checked', false);
-            $('#tipoOfertaOculta').show("slow");
-            $('#calendarios').show("slow");
-            $('#tipoDescuentoOculto').hide();
-            $('#descuentoInput').val('');
-        });
-        $('#descuento').click(function(){
-            $('#calendarios').hide();
-            $('#oferta').prop('checked', false);
-            $('#tipoOfertaOculta').hide();
-            $('#tipoDescuentoOculto').show("slow");
-            $('#calendarios').show("slow");
-            $('#valor').val('');
-            $('#cantidad').val('');
-            
 
-        });
-    });
-</script>
+
 
 
 <script src="http://code.jquery.com/ui/1.10.1/jquery-ui.js"></script>
 <script>
-    $(function () {
+    $(document).ready(function () {
     $("#calendarioInicio").datepicker({
         closeText: 'Cerrar',
         prevText: '<Ant',
@@ -168,14 +118,14 @@
         dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         weekHeader: 'Sm',
-        dateFormat: 'dd/mm/yy',
+        dateFormat: 'yy/mm/dd',
         firstDay: 1,
         minDate: 0,
         isRTL: false,
         showMonthAfterYear: false,
         yearSuffix: ''
     });
-    });
+    
 
     //evitar que input id calendarioInicio sea menor a la fecha actual
     $('#calendarioFin').datepicker({
@@ -189,13 +139,28 @@
         dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Juv', 'Vie', 'Sáb'],
         dayNamesMin: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sá'],
         weekHeader: 'Sm',
-        dateFormat: 'dd/mm/yy',
+        dateFormat: 'yy/mm/dd',
         firstDay: 1,
-        minDate: $('#calendarioInicio').val(),
+        minDate: 0,
         isRTL: false,
         showMonthAfterYear: false,
         yearSuffix: ''
-    })
+    });
+});
+
+ $(document).ready(function () {
+     //cuando cambie el input id valor
+        $('#valor').change(function() {
+            if($('#valor').val()<1){
+                $('#valor').val(1);        
+            }
+            if($('#valor').val()>$('#valorEstandar').val()){
+                $('#valor').val($('#valorEstandar').val());
+            }
+        });
+           
+ });
+    
 
    
 </script>
@@ -206,12 +171,12 @@
         var startDate;
         var endDate;
         $( "#calendarioInicio" ).datepicker({
-            dateFormat: 'dd-mm-yy'
+            dateFormat: 'yy/mm/dd'
         })
     ///////
     ///////
         $( "#calendarioFin" ).datepicker({
-            dateFormat: 'dd-mm-yy'
+            dateFormat: 'yy/mm/dd'
         });
     ///////
         $('#calendarioInicio').change(function() {

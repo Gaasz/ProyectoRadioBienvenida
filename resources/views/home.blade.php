@@ -33,9 +33,15 @@ switch (session()->get('rol')) {
               </h3>
             </div>
             <div class="card-footer">
+              @if (session()->get('rol') !=3)
               <div class="stats">
-                <a href="#pablo">Revisar detalle</a>
+                <a href="{{route('cotizaciones.listado')}}">Revisar Detalle</a>
               </div>
+              @else
+              <div class="stats">
+                <a href="{{route('cotizaciones.listado')}}">Revisar mis Cotizaciones</a>
+              </div>
+              @endif
             </div>
           </div>
         </div>
@@ -49,9 +55,15 @@ switch (session()->get('rol')) {
               <h3 class="card-title">10</h3>
             </div>
             <div class="card-footer">
+              @if(session()->get('rol') !=3)
               <div class="stats">
                 <a href="#pablo">Revisar detalle</a>
-                  </div>
+              </div>
+              @else
+              <div class="stats">
+                <a href="#pablo">Revisar mis Auspicios</a>
+              </div>
+              @endif
             </div>
           </div>
         </div>
@@ -62,28 +74,51 @@ switch (session()->get('rol')) {
                 <i class="material-icons">monetization_on</i>
               </div>
               <p class="card-category">Precio Actual del Anuncio</p>
-              <h3 class="card-title"><small>$</small>{{$oferta}}</h3>
+              <h3 class="card-title"><small>$</small>{{$ofertaPrecio}}</h3>
             </div>
+           @if (session()->get('rol')!=3)
+           <div class="card-footer">
+            <div class="stats">
+              <a href="{{route('ofertas.registro')}}">Crear Ofertas</a>
+              </div>
+            </div>
+            @else
             <div class="card-footer">
               <div class="stats">
-                <a href="#pablo">Cambiar precio</a>
-                </div>
+                <a href="{{route('ofertas.listado')}}">Revisar detalle</a>
+              </div>
             </div>
+           @endif
           </div>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-6">
           <div class="card card-stats">
             <div class="card-header card-header-info card-header-icon">
               <div class="card-icon">
-                <i class="fa fa-twitter"></i>
+                <i class="material-icons">
+                  savings
+                </i>
               </div>
-              <p class="card-category">Ofertas Vigentes</p>
-              <h3 class="card-title">2</h3>
+              <p class="card-category">Oferta Vigentes</p>
+              <h4 class="card-title">
+                @if($oferta->id == 1)
+                No Hay Ofertas Activas
+                @endif
+                @if($oferta->id != 1)
+                {{$oferta->nombre}}
+                @endif
+              </h4>
             </div>
             <div class="card-footer">
+                @if(session()->get('rol') !=3)
                 <div class="stats">
-                    <a href="#pablo">Ver detalle</a>
-                    </div>
+                  <a href="{{route('ofertas.registro')}}">Crear Ofertas</a>
+                </div>
+                @else
+                <div class="stats">
+                  <a href="{{route('ofertas.listado')}}">Revisar detalle</a>
+                </div>
+                @endif
             </div>
           </div>
         </div>
@@ -388,47 +423,43 @@ switch (session()->get('rol')) {
         <div class="col-lg-6 col-md-12">
           <div class="card">
             <div class="card-header card-header-warning">
-              <h4 class="card-title">Employees Stats</h4>
-              <p class="card-category">New employees on 15th September, 2016</p>
+              @if(session()->get('rol')!=3)
+              <h4 class="card-title">Nuevas Solicitudes de Cotizacion</h4>
+              @endif
             </div>
             <div class="card-body table-responsive">
               <table class="table table-hover">
                 <thead class="text-warning">
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Salary</th>
-                  <th>Country</th>
+                  <th class="text-center">Empresa</th>
+                  <th class="text-center">Titulo</th>
+                  <th class="text-center">Cantidad</th>
+                  <th class="text-center">Precio Total</th>
+                  <th class="text-center">Detalle</th>
                 </thead>
                 <tbody>
+                  
+                  @if(session()->get('rol')!=3)
+                  @foreach($tablaCotizaciones as $cotizacionTabla)
                   <tr>
-                    <td>1</td>
-                    <td>Dakota Rice</td>
-                    <td>$36,738</td>
-                    <td>Niger</td>
+                    <td class="text-center">{{$cotizacionTabla->empresa}}</td>
+                    <td class="text-center">{{$cotizacionTabla->titulo}}</td>
+                    <td class="text-center">{{$cotizacionTabla->cantidad}}</td>
+                    <td class="text-center">${{$cotizacionTabla->valor * $cotizacionTabla->cantidad}}</td>
+                    <td class="text-center">
+                      <a href="{{route('cotizaciones.responder',$cotizacionTabla->id_cotizacion)}}" class="btn btn-info btn-link btn-sm">
+                        <i class="material-icons">info</i>
+                      </a>
+                    </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Minerva Hooper</td>
-                    <td>$23,789</td>
-                    <td>Curaçao</td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Sage Rodriguez</td>
-                    <td>$56,142</td>
-                    <td>Netherlands</td>
-                  </tr>
-                  <tr>
-                    <td>4</td>
-                    <td>Philip Chaney</td>
-                    <td>$38,735</td>
-                    <td>Korea, South</td>
-                  </tr>
+                  @endforeach
+                  @endif
+                  
                 </tbody>
               </table>
             </div>
           </div>
         </div>
+        @if (session()->get('rol')!=3)
         <div class="col-lg-6 col-md-12">
           <div class="card">
             <div class="card-header card-header-warning">
@@ -438,11 +469,11 @@ switch (session()->get('rol')) {
             <div class="card-body table-responsive">
               <table class="table table-hover">
                 <thead class="text-warning">
-                  <th>Empresa</th>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Telefono</th>
-                  <th>Detalle</th>
+                  <th class="text-center">Empresa</th>
+                  <th class="text-center">Nombre</th>
+                  <th class="text-center">Correo</th>
+                  <th class="text-center">Telefono</th>
+                  <th class="text-center">Detalle</th>
                 </thead>
                 <tbody>
                   @foreach ($usuarios as $usuario)
@@ -466,6 +497,7 @@ switch (session()->get('rol')) {
             </div>
           </div>
         </div>
+        @endif
       </div>
     </div>
   </div>

@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\TipoEmpresa;
+use App\Models\RubroEmpresa;
 
 
 class Empresa extends Model
@@ -18,7 +20,8 @@ class Empresa extends Model
     protected $fillable = [
         'id_empresa',
         'nombre_empresa',
-        'direccion'
+        'direccion',
+        'rubro_empresa_id',
         
     ];
  
@@ -27,5 +30,14 @@ class Empresa extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function cotizaciones()
+    {
+        return $this->hasMany(Cotizacion::class);
+    }
+
+
+  
+    
 
 }

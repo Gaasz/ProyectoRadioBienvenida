@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TipoEmpresa;
+use App\Models\RubroEmpresa;
+use App\Models\User;
 
 class RegistroController extends Controller
 {
@@ -14,8 +16,14 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        $tipo_empresa = TipoEmpresa::first();
-        return view('auth.register', compact('tipo_empresa'));
+       if(User::count()==0){
+        $rubros = RubroEmpresa::all();
+        return view('auth.register', compact('rubros'));
+       }else{
+        $primero = RubroEmpresa::first();
+        $rubros = RubroEmpresa::all()->where('id_rubro_empresa', '!=', $primero->id_rubro_empresa);
+        return view('auth.register', compact('rubros'));
+       }
     }
 
     /**

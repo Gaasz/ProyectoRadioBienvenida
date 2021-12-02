@@ -66,9 +66,9 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.passwords.email');
         });
 
-        Fortify::verifyEmailView(function () {
-            return view('auth.verify');
-        });
+        // Fortify::verifyEmailView(function () {
+        //     return view('auth.verify');
+        // });
 
         Fortify::authenticateUsing(function (Request $request) {
             $user = User::where('email', $request->email)->with('rol')->with('empresa')->first();

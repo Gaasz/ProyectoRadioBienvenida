@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Oferta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Storage;
 
 class OfertaController extends Controller
 {
@@ -15,7 +16,9 @@ class OfertaController extends Controller
      */
     public function index()
     {
+        //get ofertas with estatus_oferta
         $ofertas = Oferta::all();
+       
         return view('ofertas.index', compact('ofertas'));
     }
 
@@ -25,8 +28,9 @@ class OfertaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        return view('ofertas.create');
+    {   
+        $normal = Oferta::findOrFail(1);
+        return view('ofertas.create', compact('normal'));
     }
 
     /**
@@ -36,50 +40,104 @@ class OfertaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $oferta = new Oferta;
-        $oferta->fecha_inicio = $request->fechaInicio;
-        return $oferta;
-       if($request->tipoOferta==1){
-           
-            $validacion = Validator::make($request->all(), [
-                'nombreOferta' => 'required',
-                'descripcion' => 'required',
-                'valor' => 'required',
-                'cantidad' => 'required',
-                'fechaInicio' => 'required',
-                'fechaFin' => 'required',
-            ]);
-            if ($validacion->fails()) {
-                return redirect()->back()->withErrors($validacion)->withInput()->with('oferta','ok');
-            }
-            
-                return $request->all();
-            }
-            if($request->tipoOferta==2){
-              
-
-            $validacion = Validator::make($request->all(), [
-                'nombreOferta' => 'required',
-                'descripcion' => 'required',
-                'descuento' => 'required',
-                'fechaInicio' => 'required',
-                'fechaFin' => 'required',
-            ]);
-            if ($validacion->fails()) {
-                return redirect()->back()->withErrors($validacion)->withInput()->with('descuento','ok');
-            }
-        }else{
-            $request->validate([
-                 'nombreOferta' => 'required',
-                 'descripcion' => 'required',
-                 'tipoOferta'=> 'required',
-                 'descripcion' => 'required',
+    {   
+         $validacion = Validator::make($request->all(), [
+             'nombreOferta' => 'required|string|min:5|max:100',
+             'descripcion' => 'required',
+             'valor' => 'required|min:1',
+             'fechaInicio' => 'required',
+             'fechaFin' => 'required|different:fechaInicio',
              ]);
-        }
+
+             if ($validacion->fails()) {
+                 return redirect()->back()->withErrors($validacion)->withInput();
+             }
+
+        //convert string fechaInicio to date object
+        $fechaInicio = date_create($request->fechaInicio);
+        $fechaInicio = date_format($fechaInicio, 'Y-m-d');
+
+        $fechaFin = date_create($request->fechaFin);
+        $fechaFin = date_format($fechaFin, 'Y-m-d');
+
         
+        
+            $ofertas = Oferta::all();
+            $normal = Oferta::first();
+            foreach ($ofertas as $oferta) {
+                
+              if($oferta->id != $normal->id){
+                
+               
+                //oferta nueva parte antes de oferta vieja pero termina antes de oferta vieja
+                if(($fechaInicio<=$oferta->fecha_inicio) && ($fechaInicio<=$oferta->fecha_fin) && ($fechaFin<= $oferta->fecha_fin) && ($fechaFin >= $oferta->fecha_inicio)){
+                    
+                    return redirect()->route('ofertas.registro')->with('error', 'La fecha de inicio y fin de la oferta no puede estar dentro de las fechas de otra oferta');
+                }
+
+                if(($fechaInicio>=$oferta->fecha_inicio) && ($fechaInicio<=$oferta->fecha_fin) && ($fechaFin>= $oferta->fecha_inicio) && ($fechaFin <= $oferta->fecha_fin)){
+                    
+                    return redirect()->route('ofertas.registro')->with('error', 'La fecha de inicio y fin de la oferta no puede estar dentro de las fechas de otra oferta');
+                }
+
+                //oferta antigua dentro de oferta nueva
+                if(($fechaInicio<= $oferta->fecha_inicio) && ($fechaInicio <= $oferta->fecha_fin) && ($fechaFin >= $oferta->fecha_inicio) && ($fechaFin >= $oferta->fecha_fin)){
+                    
+                    return redirect()->route('ofertas.registro')->with('error', 'La fecha de inicio y fin de la oferta no puede estar dentro de las fechas de otra oferta');
+
+                }
+                if(($fechaInicio>= $oferta->fecha_inicio) && ($fechaInicio<= $oferta->fecha_fin) && ($fechaFin>= $oferta->fecha_fin) && ($fechaFin>= $oferta->fecha_inicio)){
+                    
+                    return redirect()->route('ofertas.registro')->with('error', 'La fecha de inicio y fin de la oferta no puede estar dentro de las fechas de otra oferta');
+                }
+
+                   
+              
+            }
+        }
+           
+           
+                
+                $fechaActual = date('Y-m-d');
+                
+                $oferta = new Oferta();
+
+                
+
+                if($fechaInicio > $fechaActual){
+                    $oferta->nombre = $request->nombreOferta;
+                    $oferta->descripcion = $request->descripcion;
+                    $oferta->valor = $request->valor;
+                    $oferta->fecha_inicio = $request->fechaInicio;
+                    $oferta->fecha_fin = $request->fechaFin;
+                    $oferta->estatus_oferta_id = 2;
+                    $oferta->save();
+
+                    
+                }else{
+                    $activa = Oferta::where('estatus_oferta_id', '=', 1)->first();
+                    $activa->estatus_oferta_id = 0;
+                    $activa->save();
+                    $oferta->nombre = $request->nombreOferta;
+                    $oferta->descripcion = $request->descripcion;
+                    $oferta->valor = $request->valor;
+                    $oferta->fecha_inicio = $request->fechaInicio;
+                    $oferta->fecha_fin = $request->fechaFin;
+                    $oferta->estatus_oferta_id = 1;
+                    $oferta->save();
+                }
+
+                
+
+                return redirect()->route('ofertas.listado')->with('success', 'Oferta creada correctamente');
+            
+                
+          
+            
 
     }
+
+
 
     /**
      * Display the specified resource.
@@ -121,8 +179,24 @@ class OfertaController extends Controller
      * @param  \App\Models\Oferta  $oferta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Oferta $oferta)
+    public function destroy($id)
     {
-        //
+        
+        $normal = Oferta::first();
+        
+        $oferta = Oferta::findOrFail($id);
+       
+        if($normal->id == $oferta->id){
+            return redirect()->route('ofertas.listado')->with('error', 'No puedes eliminar la oferta Precio Normal');
+        }
+        if($oferta->estatus_oferta_id == 1){
+            $normal->estatus_oferta_id = 1;
+            $normal->save();
+            $oferta->delete();
+            return redirect()->route('ofertas.listado')->with('success', 'Oferta eliminada correctamente');
+        }else{
+            $oferta->delete();
+            return redirect()->route('ofertas.listado')->with('error', 'Oferta eliminada correctamente');
+        }
     }
 }

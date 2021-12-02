@@ -27,6 +27,11 @@
                                     {{ session('success') }}
                                 </div>
                             @endif
+                            @if(session('error'))
+                                <div class="alert alert-danger" role="error">
+                                    {{ session('error') }}
+                                </div>
+                            @endif
                             <div class="row">
                                 <div class="col-12 text-right my-2">
                                     <a href="{{ route('ofertas.registro') }}" class="btn btn-sm btn-primary">Nueva Oferta</a>
@@ -35,26 +40,20 @@
                             <div class="table-responsive">
                                 <table id="tablaUsuarios" class="table">
                                     <thead class="text-primary">
-                                        <th>
+                                        <th class="text-center">
                                             Nombre
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Fecha de Inicio
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Fecha de Fin
                                         </th>
-                                        <th>
+                                        <th class="text-center">
                                             Valor Unitario Anuncio
                                         </th>
                                         <th class="text-center">
-                                            Cantidad de Anuncios
-                                        </th>
-                                        <th class="text-center">
-                                            Porcentaje de Descuento
-                                        </th>
-                                        <th class="text-center">
-                                            Editar
+                                            Estato del Anuncio
                                         </th>
                                         <th class="text-center">
                                             Editar
@@ -62,24 +61,24 @@
                                         <th class="text-center">
                                             Eliminar
                                         </th>
+                                        
                                     </thead>
 
                                      <tbody>
                                         @foreach($ofertas as $oferta)
                                         <tr>
-                                            <td>{{$oferta->nombre}}</td>
-                                            <td>{{$oferta->fecha_inicio}}</td>
-                                            <td>{{$oferta->fecha_fin}}</td>
-                                            <td>{{$oferta->valor}}</td>
-                                            <td>{{$oferta->cantidad}}</td>
-                                            <td>{{$oferta->porcentaje_descuento}}</td>
-                                            <td class="td-actions text-center"> 
-                                                <a href="" class="btn btn-info">
-                                                    <span class="material-icons ">
-                                                        person_search
-                                                        </span> 
-                                                </a>
-                                            </td>
+                                            <td class="text-center">{{$oferta->nombre}}</td>
+                                            <td class="text-center">{{$oferta->fecha_inicio}}</td>
+                                            <td class="text-center">{{$oferta->fecha_fin}}</td>
+                                            <td class="text-center">{{$oferta->valor}}</td>
+                                            <td class="text-center">
+                                                @if($oferta->estatus_oferta_id == 1)
+                                                    Activo
+                                                @elseif($oferta->estatus_oferta_id == 0)
+                                                    Desactivado
+                                                @else
+                                                    En espera de Activación
+                                                @endif
                                             <td class="td-actions text-center">
                                                 <button class="btn btn-warning">
                                                     <span class="material-icons ">
@@ -88,7 +87,7 @@
                                                 </button>
                                             </td>
                                             <td class="td-actions text-center">
-                                               <form action="" method="POST" enctype="multipart/form-data">
+                                               <form action="{{route('ofertas.eliminar',$oferta->id)}}" method="POST" enctype="multipart/form-data">
                                                 @csrf
                                                 {{ method_field('DELETE') }}
                                                 <button type='submit' class="btn btn-danger">

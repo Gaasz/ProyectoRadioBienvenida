@@ -18,14 +18,20 @@ class LoginController extends Controller
      */
     public function index()
     {
-        $cotizaciones = Cotizacion::count();
-        $usuarios = User::latest()->with('empresa')->take(6)->get();
+        if(session()->get('rol')==3){
+            $cotizaciones = Cotizacion::where('empresa_id', session()->get('id_empresa'))->count();
+            $tablaCotizaciones = Cotizacion::where('empresa_id', session()->get('id_empresa'))->get();
+        }else{
+            $cotizaciones = Cotizacion::count();
+            $tablaCotizaciones = Cotizacion::take(5)->get();
+        }
+        $usuarios = User::latest()->with('empresa')->take(5)->get();
         $oferta = Oferta::first();
         
-        $oferta = number_format($oferta->valor, 0, ',', '.');
+        $ofertaPrecio = number_format($oferta->valor, 0, ',', '.');
         
         // return $usuarios;
-        return view('home', compact('cotizaciones', 'usuarios','oferta'));
+        return view('home', compact('cotizaciones', 'usuarios','oferta', 'tablaCotizaciones', 'ofertaPrecio'));
     }
 
     /**
@@ -92,5 +98,10 @@ class LoginController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function actions()
+    {
+        return view('auth.login');
     }
 }

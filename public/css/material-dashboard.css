@@ -15,6 +15,14 @@
 
 /*     brand Colors              */
 
+#textarea{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+
+  width: 100%;
+}
+
 .card {
   font-size: .875rem;
 }
@@ -18862,5 +18870,11 @@ Copyright (c) 2015 Daniel Eden
     list-style: none;
 }
 
+
+.lectura{
+  border-radius: 25px;
+  background: rgb(240, 236, 236);
+  padding: 20px; font-weight: bold;
+}
 
 /*# sourceMappingURL=dashboard-free.css.map */

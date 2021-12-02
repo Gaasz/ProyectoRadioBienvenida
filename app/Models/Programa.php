@@ -12,11 +12,20 @@ class Programa extends Model
 
     protected $primaryKey = 'id';
     protected $table = 'programas';
-    protected $fillable = ['nombre_programa', 'descripcion_programa', 'imagen_programa'];
+    protected $fillable = [
+        'nombre_programa',
+        'descripcion_programa',
+        'imagen_programa',
+        'precio_auspicio',
+        'dias_id',
+        'derechos_publicitarios'
+    ];
 
     //relacion programa-dia   
     public function dias()
     {
         return $this->belongsToMany(Dia::class);
     }
+
+    
 }
