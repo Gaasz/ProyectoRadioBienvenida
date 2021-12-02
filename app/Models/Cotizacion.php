@@ -5,10 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Empresa;
-<<<<<<< HEAD
 use App\Models\Anuncio;
-=======
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 
 class Cotizacion extends Model
 {
@@ -45,7 +42,6 @@ class Cotizacion extends Model
     {
         return $this->belongsTo(Empresa::class);
     }   
-<<<<<<< HEAD
 
     //relacion uno a uno con modelo aunucio
     public function anuncio()
@@ -53,6 +49,4 @@ class Cotizacion extends Model
         return $this->hasOne(Anuncio::class);
     }
     
-=======
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 }

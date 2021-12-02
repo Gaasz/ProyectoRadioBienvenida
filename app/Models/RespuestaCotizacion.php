@@ -22,10 +22,7 @@ class RespuestaCotizacion extends Model
         'valor',
         'precio',
         'frases_extras',
-<<<<<<< HEAD
         'audio_muestra'
-=======
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
     ];
 
     //relacion uno a uno con modelo cotizacion

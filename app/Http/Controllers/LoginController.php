@@ -31,11 +31,7 @@ class LoginController extends Controller
         $ofertaPrecio = number_format($oferta->valor, 0, ',', '.');
         
         // return $usuarios;
-<<<<<<< HEAD
         return view('home', compact('cotizaciones', 'usuarios','oferta', 'tablaCotizaciones', 'ofertaPrecio'));
-=======
-        return view('home', compact('cotizaciones', 'usuarios','oferta', 'tablaCotizaciones'));
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
     }
 
     /**
