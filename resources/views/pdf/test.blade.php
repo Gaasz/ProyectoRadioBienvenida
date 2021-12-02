@@ -10,14 +10,78 @@
 <body >
     <div>
 
-        <div class="ml-auto">
-            <img src="{{ asset('storage').'/bienvenida.png'}} alt="200px">
+        <div class="row">
+            <div class="ml-auto pl-3">
+                <img src="{{asset('img/bienvenida.png')}}" height="200px">
+            </div>
+            <div>
+                <table class="table">
+                    <tr>
+                        <td>
+                            Cliente
+                        </td>
+                        <td>
+                            {{$empresa->nombre_empresa}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Año - Mes
+                        </td>
+                        <td>
+                            {{$año.' - '.$mes}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Campaña 
+                        </td>
+                        <td>
+                            {{$cotizacion->titulo}}
+                        </td>
+                    </tr>
+                </table>
+
+                <table>
+                    
+                </table>
+            </div>
         </div>
 
         <div class="row">
             <label for=""></label>
         </div>
 
+        <table class="table table-bordered mx-3">
+            <thead style="background-color:orange">
+                <tr>
+                    <th>Medio</th>
+                    <th>Comuna</th>     
+                    <th>Formato</th>
+                    @for($i=0;$i<$dias;$i++)
+                        <th>{{$dias_nombre[$i].' '.$i+1}}</th>   
+                    @endfor
+                </tr>
+            </thead>
+            <tbody>
+                
+                    <tr>
+                       <td>Radio Bienvenida</td>
+                       <td>Rancagua</td>
+                       <td>Frases de 30 Segundos Repartidas</td>
+                       @for($i=0;$i<$dias;$i++)
+                            <td>{{$cotizacion->cantidad}}</td>
+                          @endfor
+                    </tr>
+                    <tr>
+                        <td style="visibility: hidden"></td>
+                        <td style="visibility: hidden"></td>
+                        <td>Frases Bonificación</td>
+                        @for($i=0;$i<$dias;$i++)
+                            <td>{{$cotizacion->extra}}</td>
+                          @endfor
+                    </tr>
+        </table>
 
        <footer class=" text-center text-lg-start fixed-bottom" style="background-color: orange;">
         

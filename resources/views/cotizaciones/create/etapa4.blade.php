@@ -27,7 +27,6 @@
                                 {{-- aqui --}}
 
                                
-<<<<<<< HEAD
                                 <div class="row mt-3 ml-3">
                                     <label class="col-sm-2 col-form-label">Titulo:</label>
                                     <div class="col-sm-4">
@@ -96,24 +95,12 @@
                                 
                                 </div>
                             </div>  
-=======
-                                {{-- <div class="d-none d-lg-block">
-                                    <div class="embed-responsive embed-responsive-4by3">
-                                        <iframe class="embed-responsive-item" src="{{asset('storage/').'/'.$cotizacion->archivo }}"></iframe>
-                                    </div>
-                                </div> --}}
-                              
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
 
 
                                 <div class="mt-3 card-header card-header-primary">
                                    <a id="ordenCompra" style="color:white" href="#"><h6><i id="flechaAbajo" class="material-icons">keyboard_arrow_down</i><i id="flechaArriba" style="display:none" class="material-icons">keyboard_arrow_up</i>
-<<<<<<< HEAD
                                     Ver Orden de Compra</h6>
                                     </a>
-=======
-                                    Ver Orden de Compra</h6></a>
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                 </div>
 
                                 <div id="ordenCompraPC" style="display:none" class="col-md-12 col-lg-12">
@@ -161,27 +148,18 @@
                                     <div class="row">
                                         <div class="mx-auto">
                                             <div class="custom-control custom-radio">
-<<<<<<< HEAD
                                                 <input type="radio" value="1" @if(old('seleccioneOpción')=='1') checked @endif class="custom-control-input" id="aceptar" name="seleccioneOpción">
-=======
-                                                <input type="radio" value="1" class="custom-control-input" id="aceptar" name="seleccioneOpción">
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                                 <label class="custom-control-label" for="aceptar">Aceptar y asignar horarios Reales</label>
                                             </div>
                                         </div>
                                     </div>
                                     
-<<<<<<< HEAD
                                     <div class="col-sm-12 mt-3">
-=======
-                                    <div class="col-sm-12">
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                         <div class="mx-auto" id="archivoOculto" 
                                         @if(session()->get('aceptar')==false)
                                         style="display: none"
                                         @endif
                                         >
-<<<<<<< HEAD
                                         <div mt-3>
                                             <label for="">Horarios Preferenciales del Cliente</label>
                                         </div>
@@ -198,14 +176,6 @@
                                             
 
                                             <label for="">Ingrese los Horarios:</label>
-=======
-
-                                            <div class="row my-3">
-                                                
-                                                
-                                            </div>
-                                        
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                             <div class="row my-3">
                                                 @for($i = 0; $i < $respuesta->cantidad+$respuesta->frases_extras; $i++)
                                                 <div class="col-md-2 col-sm-6 mx-auto">
@@ -220,11 +190,7 @@
                                     <div class="row">
                                         <div class="mx-auto">
                                             <div class="custom-control custom-radio">
-<<<<<<< HEAD
                                                 <input type="radio" value="2"  @if(old('seleccioneOpción')=='2') checked @endif class="custom-control-input" id="rechazar" name="seleccioneOpción">
-=======
-                                                <input type="radio" value="2" class="custom-control-input" id="rechazar" name="seleccioneOpción">
->>>>>>> 01fa2ca914a289a145b5ee0fc2b793feaecc94a0
                                                 <label class="custom-control-label" for="rechazar">Rechazar y volver a Etapa 3</label>
                                             </div>
                                         </div>
