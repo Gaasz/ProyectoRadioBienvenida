@@ -13,19 +13,15 @@
         <div class="card card-login card-hidden mb-3">
           <div class="card-header card-header-primary text-center">
             <h4 class="card-title"><strong>{{ __('Ingresar') }}</strong></h4>
-            {{-- <div class="social-line">
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-facebook-square"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-twitter"></i>
-              </a>
-              <a href="#pablo" class="btn btn-just-icon btn-link btn-white">
-                <i class="fa fa-google-plus"></i>
-              </a>
-            </div> --}}
           </div>
           <div class="card-body">
+
+            {{-- mostrar mensaje de error de session error --}}
+            @if(session('error'))
+                  <div class="alert alert-success" role="success">
+                      {{ session('error') }}
+                  </div>
+            @endif
             <br>
             <br>
             <div class="bmd-form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
@@ -35,7 +31,7 @@
                     <i class="material-icons">email</i>
                   </span>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ __('Email...') }}" value="{{ old('email', 'correo@dominio.com') }}" required autofocus>
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}" required autofocus placeholder="correo@dominio.com">
               </div>
               @if ($errors->has('email'))
                 <div id="email-error" class="error text-danger pl-3" for="email" style="display: block;">
@@ -57,14 +53,6 @@
                   <strong>{{ $errors->first('password') }}</strong>
                 </div>
               @endif
-            </div>
-            <div class="form-check mr-auto ml-3 mt-3">
-              <label class="form-check-label">
-                <input class="form-check-input" type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Mantener Sesión') }}
-                <span class="form-check-sign">
-                  <span class="check"></span>
-                </span>
-              </label>
             </div>
           </div>
           <div class="card-footer justify-content-center">

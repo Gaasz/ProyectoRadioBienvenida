@@ -196,46 +196,24 @@
                                             </div>
                                             {{-- <input type="text" name="name" class="form-control" placeholder="{{ __('Tipo Empresa') }}" value="{{ old('name') }}" required> --}}
                                             <div class="form-group">
-                                              <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1" >
-                                                <option selected>Seleccione Rubro de la Empresa</option>
-                                                <option>Supermercado</option>
-                                                <option>Ferreterias</option>
-                                                <option>Mecanicos</option>
-                                                <option>Comunicaciones</option>
-                                                <option>Otros</option>
+                                              <select name="rubroEmpresa" class="form-control" data-style="btn btn-link"  >
+                                                <option value="1" disabled selected>Seleccione Rubro de la Empresa</option>
+                                                @foreach ($rubros as $rubro)
+                                                
+                                                  <option class="form-control" value="{{$rubro->id_rubro_empresa}}">{{$rubro->nombre}}</option>
+
+                                                @endforeach
+                                                
                                               </select>
                                             </div>
                                           </div>
-                                          @if ($errors->has('name'))
+                                          @if ($errors->has('rubroEmpresa'))
                                             <div id="name-error" class="error text-danger pl-3" for="name" style="display: block;">
-                                              <strong>{{ $errors->first('name') }}</strong>
+                                              <strong>{{ $errors->first('rubroEmpresa') }}</strong>
                                             </div>
                                           @endif
                                         </div>
-                                        <div class="bmd-form-group{{ $errors->has('name') ? ' has-danger' : '' }} mt-3">
-                                          <div class="input-group">
-                                            <div class="input-group-prepend">
-                                              <span class="input-group-text">
-                                                  <i class="material-icons">business</i>
-                                              </span>
-                                            </div>
-                                            {{-- <input type="text" name="name" class="form-control" placeholder="{{ __('Rubro Empresa') }}" value="{{ old('name') }}" required> --}}
-                                            <div class="form-group">
-                                              <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2" >
-                                                <option >Seleccione Tipo de Empresa</option>
-                                                <option>Micro</option>
-                                                <option>Pequeña</option>
-                                                <option>Mediana</option>
-                                                <option>Grande</option>
-                                              </select>
-                                            </div>
-                                          </div>
-                                          @if ($errors->has('name'))
-                                            <div id="name-error" class="error text-danger pl-3" for="name" style="display: block;">
-                                              <strong>{{ $errors->first('name') }}</strong>
-                                            </div>
-                                          @endif
-                                        </div>
+                                       
                                    
                                     
                                 
@@ -268,7 +246,7 @@
 </div>
 @endsection
 
-@section('js')
+{{-- @section('js')
 <script>
 
   $('.formulario-registro').submit(function(e){
@@ -298,4 +276,4 @@
 
   
 </script>
-@endsection
+@endsection --}}

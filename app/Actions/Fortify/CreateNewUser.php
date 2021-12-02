@@ -21,48 +21,93 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'primerNombre' => ['required', 'alpha', 'max:50'],
-            'segundoNombre' => ['required', 'alpha', 'max:50'],
-            'apellidoPaterno' => ['required', 'alpha', 'max:50'],
-            'apellidoMaterno' => ['required', 'alpha', 'max:50'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
-                Rule::unique(User::class),
-            ],
-            'nombreEmpresa' => ['required', 'alpha', 'max:100'],
-            'direccion' => ['required', 'alpha', 'max:200'],
-            'telefono' => ['required', 'numeric', 'min:9'],
-            'password' => $this->passwordRules(),
-        ])->validate();
 
-        
+        if(User::count() == 0)
+        {
+            Validator::make($input, [
+                'primerNombre' => ['required', 'alpha', 'max:50'],
+                'segundoNombre' => ['required', 'alpha', 'max:50'],
+                'apellidoPaterno' => ['required', 'alpha', 'max:50'],
+                'apellidoMaterno' => ['required', 'alpha', 'max:50'],
+                'email' => [
+                    'required',
+                    'string',
+                    'email',
+                    'max:255',
+                    Rule::unique(User::class),
+                ],
+                'telefono' => ['required', 'numeric', 'min:9', 'unique:users'],
+                'password' => $this->passwordRules(),
+            ])->validate();
 
-        return User::create([
-            'primer_nombre' => $input['primerNombre'],
-            'segundo_nombre' => $input['segundoNombre'],
-            'apellido_paterno' => $input['apellidoPaterno'],
-            'apellido_materno' => $input['apellidoMaterno'],
-            'password' => Hash::make($input['password']),
-            'email' => $input['email'],
-            'telefono' => $input['telefono'],
-            'nombre_empresa' => $input['nombreEmpresa'],
-            'direccion' => $input['direccion'],
-        ]);
+            $empresa = New Empresa();
+            $empresa->id_empresa = date('mdYhis', time());
+            $empresa->nombre_empresa = 'Radio Bienvenida';
+            $empresa->direccion = "C. Cuevas 289, Rancagua, O'Higgins";
+            $empresa->rubro_empresa_id = 1;
+            $id_empresa = $empresa->id_empresa;
+            $empresa->save();
 
-        // //creacion usuario
-        // $usuario = new User;
-        // primer_nombre = $input['primerNombre'];
-        // segundo_nombre = $input['segundoNombre'];
-        // apellido_paterno = $input['apellidoPaterno'];
-        // apellido_materno = $input['apellidoMaterno'];
-        // password = Hash::make($input['password']);
-        // email = $input['email'];
-        // telefono = $input['telefono'];
-        // save();
-        
+
+
+            return User::create([
+                'id' => date('mdYhis', time()),
+                'primer_nombre' => $input['primerNombre'],
+                'segundo_nombre' => $input['segundoNombre'],
+                'apellido_paterno' => $input['apellidoPaterno'],
+                'apellido_materno' => $input['apellidoMaterno'],
+                'password' => Hash::make($input['password']),
+                'email' => $input['email'],
+                'telefono' => $input['telefono'],
+                'empresa_id' => $id_empresa,
+                'rol_id' => 1,
+            ]);
+
+        }
+         else{
+
+
+             Validator::make($input, [
+                 'primerNombre' => ['required', 'alpha', 'max:50'],
+                 'segundoNombre' => ['required', 'alpha', 'max:50'],
+                 'apellidoPaterno' => ['required', 'alpha', 'max:50'],
+                 'apellidoMaterno' => ['required', 'alpha', 'max:50'],
+                 'email' => [
+                     'required',
+                     'string',
+                     'email',
+                     'max:255',
+                     Rule::unique(User::class),
+                 ],
+                 'nombreEmpresa' => ['required','not_in:0'],
+                 'direccion' => ['required', 'max:200', 'string' , 'min:10'],
+                 'telefono' => ['required', 'numeric', 'digits:9','unique:users'],
+                //  'rubroEmpresa' => ['required', 'numeric', 'min:1'],
+                 'password' => $this->passwordRules(),
+             ])->validate();
+           
+            
+             $empresa = new Empresa();
+             $empresa->id_empresa = date('mdYhis', time());
+             $empresa->nombre_empresa = $input['nombreEmpresa'];
+             $empresa->direccion = $input['direccion'];
+            $empresa->rubro_empresa_id =$input['rubroEmpresa'];
+             $id_empresa = $empresa->id_empresa;
+             $empresa->save();
+                 
+             return User::create([
+                 'id' => date('mdYhis', time()),
+                 'primer_nombre' => $input['primerNombre'],
+                 'segundo_nombre' => $input['segundoNombre'],
+                 'apellido_paterno' => $input['apellidoPaterno'],
+                 'apellido_materno' => $input['apellidoMaterno'],
+                 'password' => Hash::make($input['password']),
+                 'email' => $input['email'],
+                 'telefono' => $input['telefono'],
+                 'empresa_id' => $id_empresa,
+                 'rol_id' => 3,
+             ]);
+         }
+
     }
 }
